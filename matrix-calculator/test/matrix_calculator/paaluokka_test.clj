@@ -31,3 +31,14 @@
     not same as the number of the rest parameters, exeption should be thrown."
     (is (thrown? Exception (make-matrix 1 1 1 2)))
     (is (thrown? Exception (make-matrix 2 2 1 2 3)))))
+
+(deftest paaluokka.add-two-matrices.correct-input
+  (testing "When giving two matrices of same type, should got
+    the sum of one matrices as a return value."
+    (is (= (add-two-matrices (make-matrix 2 2 1 2 3 4)(make-matrix 2 2 4 3 2 1)) [[5 5][5 5]]))
+    (is (= (add-two-matrices (make-matrix 3 1 1 2 3)(make-matrix 3 1 11 4 932)) [[12][6][935]]))))
+
+(deftest paaluokka.add-two-matrices.incorrect-input
+  (testing "When given two matrices of different type, should get an Exception."
+    (is (thrown? Exception (add-two-matrices (make-matrix 1 1 3)(make-matrix 2 1 7 5))))
+    (is (thrown? Exception (add-two-matrices (make-matrix 3 3 1 2 3 4 5 6 7 8 9)(make-matrix 1 2 9 9))))))
