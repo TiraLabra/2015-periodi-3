@@ -41,7 +41,7 @@
           (recur (dec i) rest-elems (conj matrix row)))))))
 
 (defn add-two-matrices [matrix-a matrix-b]
-  "Takes two matrices as an parameters. If the matrices are same type, sums them:
+  "Takes two matrices as parameters. If the matrices are same type, sums them:
   To say, add every element of matrix-a to an according one of b. Returns an new matrix of same type.
   (A + B)(i,j) = A(i, j) + B(i, j) for all i to m and j to n, where m*n is the size/type of the matrices."
   (let [error (fn [] (throw (Exception. "Matrices are not same type!")))]
@@ -51,3 +51,9 @@
      :else
      (let [add-row (fn [row-a row-b] (map (fn [x y] (+ x y)) row-a row-b))]
        (map add-row matrix-a matrix-b)))))
+
+(defn scalar-product [scalar matrix]
+  "Takes one number and one matrix as parameters. Multiples every element of matrix by the scalar.
+  DOES NOT WORK. Change make-matrix"
+  (let [f (fn [m] (concat [(count m)(count (first m))] (map (fn [x] (* x scalar))(apply concat m))))]
+    (apply f matrix)))
