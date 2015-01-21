@@ -21,14 +21,14 @@
        (conj result (first elems))
        (rest rest-elems)))))
 
-(defn make-matrix [rows columns & elems]
+(defn make-matrix [rows columns elems]
   "Takes as a parameters the number of rows x, the number of columns y
-  and all elements of the matrix.
+  and all elements of matrix in an array.
   Composes a presentation of matrix as an array with x elements which
   presents the rows. Each row contains y elements."
   (if (not= (* rows columns)(count elems))
     (throw (Exception.
-            (str "You should give: amount of rows, amount of columns, "
+            (str "You should give: amount of rows, amount of columns and array of "
             (* rows columns) " elements.")))
     (loop [i rows
            elems elems
@@ -52,8 +52,16 @@
      (let [add-row (fn [row-a row-b] (map (fn [x y] (+ x y)) row-a row-b))]
        (map add-row matrix-a matrix-b)))))
 
+(defn is-matrix? [matrix]
+  "Tests if the given matrix is an array including array(s)."
+  (and (vector? matrix) (vector? (first matrix))))
+
 (defn scalar-product [scalar matrix]
   "Takes one number and one matrix as parameters. Multiples every element of matrix by the scalar.
-  DOES NOT WORK. Change make-matrix"
-  (let [f (fn [m] (concat [(count m)(count (first m))] (map (fn [x] (* x scalar))(apply concat m))))]
-    (apply f matrix)))
+  Returns a new matrix, which applies to formula (cA)(i,j) = c * A(i, j) where c is the scalar,
+  A a matrix and i and j the indexes of matrix."
+  (if (or (not (is-matrix? matrix)) (not (number? scalar)))
+    (throw (Exception. "You should give one number and one valid matrix."))
+    (make-matrix (count matrix) (count (first matrix))
+                 (map (fn [elem] (* elem scalar))
+                      (apply concat matrix)))))
