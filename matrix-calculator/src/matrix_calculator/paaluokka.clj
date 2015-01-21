@@ -65,3 +65,22 @@
     (make-matrix (count matrix) (count (first matrix))
                  (map (fn [elem] (* elem scalar))
                       (apply concat matrix)))))
+
+(defn take-column [index matrix]
+  "Returns elements in the column of given index"
+  (vec (map (fn [x] (get x index)) matrix)))
+
+(defn transpose [matrix]
+  "Changes the rows and columns of matrix. Transpose of matrix
+  [1 2]  is [1 3 5]
+  [3 4]     [2 4 6]
+  [5 6]"
+  (if (not (is-matrix? matrix))
+    (throw (Exception. "Invalid matrix!"))
+    (loop [result []
+           index 0]
+      (if (= index (count (first matrix)))
+        result
+        (recur (conj result
+                     (take-column index matrix))
+               (inc index))))))
