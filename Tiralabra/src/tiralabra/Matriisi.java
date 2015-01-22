@@ -18,7 +18,7 @@ public class Matriisi {
     /**
      *Sisältää matriisin arvot.
      */
-    public double[] matriisi;
+    public double[] data;
 
     /**
      *Matriisin leveys.
@@ -47,15 +47,21 @@ public class Matriisi {
         } else {
             this.onNelio = false;
         }
+        this.data = m;
         this.leveys = l;
         this.korkeus = k;
     }
     
+    /**
+     *Kertoo annetulla vakiolla matriisin.
+     * @param v, vakiokerroin
+     * @return kertolaskun tulos
+     */
     public Matriisi vakiollaKertominen(double v) {
-        double[] t = new double[this.matriisi.length];
+        double[] t = new double[this.data.length];
         Matriisi uusiM = new Matriisi(t, this.korkeus, this.leveys);
-        for (int i = 0; i < this.matriisi.length; i++) {
-           uusiM.matriisi[i] = v * this.matriisi[i];
+        for (int i = 0; i < this.data.length; i++) {
+           uusiM.data[i] = v * this.data[i];
         }
         return uusiM;
     }
@@ -88,9 +94,9 @@ public class Matriisi {
         if(!this.onNelio || !m.onNelio) {
            return new VastausMatriisi(false, new Matriisi(new double[1], 1, 1));
         }
-        Matriisi uusiM = new Matriisi(new double[this.matriisi.length], this.korkeus, this.leveys);
-        for (int i = 0; i < this.matriisi.length; i++) {
-           uusiM.matriisi[i] = this.matriisi[i] - m.matriisi[i];
+        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
+        for (int i = 0; i < this.data.length; i++) {
+           uusiM.data[i] = this.data[i] - m.data[i];
         }
         return new VastausMatriisi(true, uusiM);
     }
@@ -101,12 +107,12 @@ public class Matriisi {
      * @return matriisien tulos
      */
     public VastausMatriisi summa(Matriisi m) {
-        if(!this.onNelio || !m.onNelio) {
+        if(this.korkeus != m.korkeus || this.leveys != m.leveys) {
            return new VastausMatriisi(false, new Matriisi(new double[1], 1, 1));
         }
-        Matriisi uusiM = new Matriisi(new double[this.matriisi.length], this.korkeus, this.leveys);
-        for (int i = 0; i < this.matriisi.length; i++) {
-           uusiM.matriisi[i] = m.matriisi[i] + this.matriisi[i];
+        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
+        for (int i = 0; i < this.data.length; i++) {
+           uusiM.data[i] = m.data[i] + this.data[i];
         }
         return new VastausMatriisi(true, uusiM);
     }
@@ -116,16 +122,16 @@ public class Matriisi {
      * @param m, toinen lakutoimituksen alkioista.
      * @return matriisin determinatti
      */
-    public int determinantti(Matriisi m) {
-        return 1;
-    }
-    
-    /**
-     *Muodostaa matriisin transpoosin. 
-     * @return Matriisin transpoosi.
-     */
-    public Matriisi transpoosi() {
-        Matriisi uusiMatriisi = new Matriisi(new double[1], 1, 1);
-        return uusiMatriisi;
-    }
+//    public int determinantti(Matriisi m) {
+//        return 1;
+//    }
+//    
+//    /**
+//     *Muodostaa matriisin transpoosin. 
+//     * @return Matriisin transpoosi.
+//     */
+//    public Matriisi transpoosi() {
+//        Matriisi uusiMatriisi = new Matriisi(new double[1], 1, 1);
+//        return uusiMatriisi;
+//    }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -11,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tiralabra.Matriisi;
+import tiralabra.VastausMatriisi;
 
 /**
  *
@@ -37,7 +39,14 @@ public class MatriisiLuokanTestit {
     public void setUp() {
         this.nelio = new Matriisi(new double[4], 2, 2);
         this.suorakulmio = new Matriisi(new double[32], 4, 8);
-        this.m = new Matriisi(new double[8], 4, 2);
+        this.m = new Matriisi(new double[4], 2, 2);
+        this.nelio.data[0] = 1;
+        this.nelio.data[1] = 2;
+        this.nelio.data[2] = 3;
+        this.nelio.data[3] = 4;
+        for (int i = 0; i < this.m.data.length; i++) {
+            this.m.data[i] = 2;
+        }
     }
     
     @After
@@ -58,11 +67,17 @@ public class MatriisiLuokanTestit {
         assertEquals(8, this.suorakulmio.korkeus);
     }
     
-//    @Test
-//    public void kertooVakiollaOikein() {
-//        Matriisi uusi = this.nelio.vakiollaKertominen(3);
-//        for (int i = 0; i < uusi.matriisi.length; i++) {
-//            assertEquals(9, uusi.matriisi[i]);
-//        }
-//    }
+    @Test
+    public void kertooVakiollaOikein() {
+        Matriisi uusi = this.nelio.vakiollaKertominen(3);
+        assertEquals(3, uusi.data[0], 0);
+    }
+    
+     @Test
+    public void laskeekoSummanOikein() {
+        VastausMatriisi uusi1 = this.nelio.summa(this.m);
+        assertEquals(4, uusi1.m.data[1], 0);
+        VastausMatriisi uusi2 = this.nelio.summa(this.suorakulmio);
+        assertFalse(uusi2.onnistui);
+    }
 }
