@@ -77,10 +77,26 @@
   [5 6]"
   (if (not (is-matrix? matrix))
     (throw (Exception. "Invalid matrix!"))
-    (loop [result []
-           index 0]
-      (if (= index (count (first matrix)))
-        result
-        (recur (conj result
-                     (take-column index matrix))
-               (inc index))))))
+    (apply map vector matrix)))
+
+(defn get-elem [y x matrix]
+  "Returns elem in the spot matrix[y][x]."
+  (get (get matrix y) x))
+
+(defn set-elem [y x matrix new-value]
+  (assoc matrix y (assoc (get matrix y) x new-value)))
+
+(defn make-empty-matrix [y x]
+  (let [row (fn [x] (vec (repeat (first x) 0)))]
+    (vec (map row  (repeat y [x])))))
+
+(defn nested-for
+  [function x y]
+  (map (fn [a]
+         (map (fn [b]
+                (function a b)) y))
+       x))
+
+(defn matrix-mult
+  [a b]
+  (nested-for (fn [x y] (reduce + (map * x y))) a (transpose b)))
