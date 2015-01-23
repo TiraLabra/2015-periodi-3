@@ -78,3 +78,10 @@
     (is (= (transpose [[7 1 6][2 4 3][1 1 1][3 2 1]])
            [[7 2 1 3][1 4 1 2][6 3 1 1]]))
     (is (= (transpose [[1 2 3]]) [[1][2][3]] ))))
+
+(deftest paaluokka.row-iteration
+  (testing "if the row iteration returns an matrix with elements defined
+    in the next function."
+    (let [test-f (fn [a b] (+ a b))]
+      ())))
+
