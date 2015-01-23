@@ -4,6 +4,10 @@
 (defn -main [& args]
   (println "Welcome to my project! These are your args:" args))
 
+(defn invalid-matrix-notification []
+  (throw (Exception. "Invalid matrix!")))
+(defn matrices-are-not-valid-type []
+  (throw (Exception. "The given matrices are not valid type! ")))
 
 (defn take-until
   "Takes as parameters one number x and list of elements.
@@ -47,13 +51,13 @@
   To say, add every element of matrix-a to an according one of b. Returns an new matrix of same type.
   (A + B)(i,j) = A(i, j) + B(i, j) for all i to m and j to n, where m*n is the size/type of the matrices."
   [matrix-a matrix-b]
-  (let [error (fn [] (throw (Exception. "Matrices are not same type!")))]
-    (cond
-     (not= (count matrix-a) (count matrix-b)) (error)
-     (not= (count (first matrix-a)) (count (first matrix-b))) (error)
-     :else
-     (let [add-row (fn [row-a row-b] (map (fn [x y] (+ x y)) row-a row-b))]
-       (map add-row matrix-a matrix-b)))))
+    (if
+      (or
+       (not= (count matrix-a) (count matrix-b))
+       (not= (count (first matrix-a)) (count (first matrix-b))))
+        (matrices-are-not-valid-type)
+        (let [add-row (fn [row-a row-b] (map (fn [x y] (+ x y)) row-a row-b))]
+           (map add-row matrix-a matrix-b))))
 
 (defn is-matrix?
   "Tests if the given matrix is an array including array(s)."
@@ -83,7 +87,7 @@
   [5 6]"
   [matrix]
   (if (not (is-matrix? matrix))
-    (throw (Exception. "Invalid matrix!"))
+    (invalid-matrix-notification)
     (apply map vector matrix)))
 
 (defn get-elem
@@ -100,15 +104,31 @@
   (let [row (fn [x] (vec (repeat (first x) 0)))]
     (vec (map row  (repeat y [x])))))
 
-(defn nested-for
-  "Iterates every element of matrix, like two for-loops in java."
+(defn row-iteration
+  "Generates every ordered pair of the rows of matrixA and matrixB.
+  (a,b) is subset of matrixA * matrixB, where a is a row of matrixA and b is a row of matrixB.
+  For each pair, this function calls the given function with a and b as parameters."
   [function matrixA matrixB]
   (map (fn [a]
          (vec (map (fn [b]
                 (function a b)) matrixB)) )
        matrixA))
 
-(defn matrix-mult
-  [a b]
-  (vec
-   (nested-for (fn [x y] (reduce + (map * x y))) a (transpose b))))
+(defn matrix-multiplication
+  "This function takes two matrix as parameters and multiplies them as matrices are multiplied
+  linear algebra. The first matrix must have as many columns as the second has rows.
+  For exemple
+  [1 2] and [1 3 5] can be multiplied in both ways. Square matrix are also valids.
+  [3 4]     [2 4 6]
+  [5 6]
+  More about matrix multiplication:
+  http://en.wikipedia.org/wiki/Matrix_multiplication "
+  [matrixA matrixB]
+  (cond
+   (not (and (is-matrix? matrixA) (is-matrix? matrixB)))
+     (invalid-matrix-notification)
+   (not (= (count (first matrixA))(count matrixB)))
+     (matrices-are-not-valid-type)
+   :else
+    (vec
+     (row-iteration (fn [x y] (reduce + (map * x y))) matrixA (transpose matrixB)))))
