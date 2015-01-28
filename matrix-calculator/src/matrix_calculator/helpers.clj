@@ -22,7 +22,7 @@
          result []
          rest-elems elems]
     (if (zero? x)
-      [result rest-elems]
+      [result (vec rest-elems)]
       (recur
        (dec x)
        (rest elems)

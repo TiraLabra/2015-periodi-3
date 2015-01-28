@@ -37,3 +37,17 @@
                           (if (integer? (first x))
                             (reduce + (map * x y))
                             (round 3 (reduce + (map * x y))))) matrixA (transpose matrixB)))))
+
+(defn sub-matrix [matrix fromX fromY how-long]
+  (vec ( map (fn [row]
+         (vec (take how-long (drop fromX row))))
+       (take how-long (drop fromY matrix)))))
+
+(defn strassen
+  [matrixA matrixB]
+  (let [n (count matrixA)]
+    (if (= n 1)
+      (matrix-multiplication matrixA matrixB)
+      (let [new-size (/ n 2)
+            a11 (make-empty-matrix new-size new-size)]))
+    "kesken"))
