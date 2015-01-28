@@ -9,6 +9,12 @@
 (defn matrices-are-not-valid-type []
   (throw (Exception. "The given matrices are not valid type! ")))
 
+(defn round
+  "Helper function for rounding big decimals."
+  [decimals number]
+  (double
+    (.setScale (bigdec number) decimals java.math.RoundingMode/HALF_EVEN)))
+
 (defn take-until
   "Takes as parameters one number x and list of elements.
   Returns an array, where first element is x first element of
@@ -115,20 +121,26 @@
        matrixA))
 
 (defn matrix-multiplication
-  "This function takes two matrix as parameters and multiplies them as matrices are multiplied
+  "This function takes two matrix as parameters and multiplies them as matrices are multiplied in
   linear algebra. The first matrix must have as many columns as the second has rows.
   For exemple
-  [1 2] and [1 3 5] can be multiplied in both ways. Square matrix are also valids.
+  [1 2] and [1 3 5] can be multiplied in both ways. Square matrices are also valids.
   [3 4]     [2 4 6]
   [5 6]
   More about matrix multiplication:
-  http://en.wikipedia.org/wiki/Matrix_multiplication "
+  http://en.wikipedia.org/wiki/Matrix_multiplication.
+
+  All decimal numbers are rounded to three decimals."
   [matrixA matrixB]
   (cond
    (not (and (is-matrix? matrixA) (is-matrix? matrixB)))
      (invalid-matrix-notification)
-   (not (= (count (first matrixA))(count matrixB)))
+   (or
+    (not (= (count (first matrixA))(count matrixB)))
+    (not (= (count (first matrixB))(count matrixA))))
      (matrices-are-not-valid-type)
    :else
-    (vec
-     (row-iteration (fn [x y] (reduce + (map * x y))) matrixA (transpose matrixB)))))
+    (vec (row-iteration (fn [x y]
+                          (if (integer? (first x))
+                            (reduce + (map * x y))
+                            (round 3 (reduce + (map * x y))))) matrixA (transpose matrixB)))))
