@@ -8,8 +8,8 @@
        (not= (count matrix-a) (count matrix-b))
        (not= (count (first matrix-a)) (count (first matrix-b))))
         (matrices-are-not-valid-type)
-        (let [add-row (fn [row-a row-b] (map function row-a row-b))]
-           (map add-row matrix-a matrix-b))))
+        (let [add-row (fn [row-a row-b] (vec (map function row-a row-b)))]
+           (vec (map add-row matrix-a matrix-b)))))
 
 (defn add-two-matrices
   "Takes two matrices as parameters. If the matrices are same type, sums them:

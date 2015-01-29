@@ -54,7 +54,7 @@
 (defn strassen
   [matrixA matrixB]
   (let [n (count matrixA)]
-    (if (= n 2)
+    (if (<= n 2)
       (matrix-multiplication matrixA matrixB)
       (let [new-size (/ n 2)
             a11 (sub-matrix matrixA 0 0 new-size)
