@@ -30,10 +30,6 @@ public class Matriisi {
      */
     public int korkeus;
 
-    /**
-     *Kertoo onko matriisi neliömatriisi.
-     */
-    public boolean onNelio;
     
     /**
      *Matriisin konstruktori.
@@ -42,14 +38,21 @@ public class Matriisi {
      * @param k, matriisin korkeus
      */
     public Matriisi(double[] m, int l, int k) {
-        if(l == k) {
-            this.onNelio = true;
-        } else {
-            this.onNelio = false;
-        }
         this.data = m;
         this.leveys = l;
         this.korkeus = k;
+    }
+    
+    /**
+     *Kertoo onko matriisi neliömatriisi.
+     * @return true, jos on tai false jos ei
+     */
+    public boolean onNelio() {
+        if(this.leveys == this.korkeus) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     /**
@@ -57,13 +60,11 @@ public class Matriisi {
      * @param v, vakiokerroin
      * @return kertolaskun tulos
      */
-    public Matriisi vakiollaKertominen(double v) {
-        double[] t = new double[this.data.length];
-        Matriisi uusiM = new Matriisi(t, this.korkeus, this.leveys);
+    public boolean vakiollaKertominen(double v) {
         for (int i = 0; i < this.data.length; i++) {
-           uusiM.data[i] = v * this.data[i];
+           this.data[i] = v * this.data[i];
         }
-        return uusiM;
+        return true;
     }
     
     /**
@@ -90,15 +91,14 @@ public class Matriisi {
      * @param m, toinen lakutoimituksen alkioista.
      * @return matriisien tulos
      */
-    public VastausMatriisi erotus(Matriisi m) {
-        if(!this.onNelio || !m.onNelio) {
-           return new VastausMatriisi(false, new Matriisi(new double[1], 1, 1));
+    public boolean erotus(Matriisi m) {
+        if(this.korkeus != m.korkeus || this.leveys != m.leveys) {
+           return false;
         }
-        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
         for (int i = 0; i < this.data.length; i++) {
-           uusiM.data[i] = this.data[i] - m.data[i];
+           m.data[i] = this.data[i] - m.data[i];
         }
-        return new VastausMatriisi(true, uusiM);
+        return true;
     }
     
     /**
@@ -106,15 +106,14 @@ public class Matriisi {
      * @param m, toinen lakutoimituksen alkioista.
      * @return matriisien tulos
      */
-    public VastausMatriisi summa(Matriisi m) {
+    public boolean summa(Matriisi m) {
         if(this.korkeus != m.korkeus || this.leveys != m.leveys) {
-           return new VastausMatriisi(false, new Matriisi(new double[1], 1, 1));
+           return false;
         }
-        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
         for (int i = 0; i < this.data.length; i++) {
-           uusiM.data[i] = m.data[i] + this.data[i];
+           m.data[i] = m.data[i] + this.data[i];
         }
-        return new VastausMatriisi(true, uusiM);
+        return true;
     }
     
     /**
@@ -130,8 +129,13 @@ public class Matriisi {
 //     *Muodostaa matriisin transpoosin. 
 //     * @return Matriisin transpoosi.
 //     */
-//    public Matriisi transpoosi() {
-//        Matriisi uusiMatriisi = new Matriisi(new double[1], 1, 1);
-//        return uusiMatriisi;
+//    public boolean transpoosi() {
+//        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
+//        for (int i = 0; i < this.korkeus; i++) {
+//            for (int j = 0; j < this.leveys; j++) {
+//                uusiM.data[j+uusiM.leveys*i] = 
+//            }
+//        }
+//        return true;
 //    }
 }

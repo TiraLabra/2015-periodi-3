@@ -1,0 +1,7 @@
+29.01.2015 Ensimmäinen viikko
+
+Ohjelmoinnnissa olen edelleen matriisien peruslakutoimituksissa. Poistin vastausmatriisin ja implementoin metodit palauttamaan booleanin, riippuen onnistuiko laskutoimitus. Laskutoimituksen vastaus tulee metodin parametrimatriisiin tai vakiolla kerrottaessa matriisiin, joka kerrotaan. Muutin testit vastaamaan metodejaan. 
+
+Lisäksi matriisilla ei ole enää booleania memberinä, mikä kertoisi onko matriisi neliömatriisi. Nyt vastauksen antaa metodi. 
+
+Lisäsin myös testejä. 

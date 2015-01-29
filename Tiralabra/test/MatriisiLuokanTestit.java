@@ -61,23 +61,27 @@ public class MatriisiLuokanTestit {
     
     @Test
     public void rakentaakoMatriisinOikein() {
-        assertTrue(nelio.onNelio);
-        assertFalse(suorakulmio.onNelio);
+        assertTrue(nelio.onNelio());
+        assertFalse(suorakulmio.onNelio());
         assertEquals(2, this.nelio.leveys);
         assertEquals(8, this.suorakulmio.korkeus);
     }
     
     @Test
     public void kertooVakiollaOikein() {
-        Matriisi uusi = this.nelio.vakiollaKertominen(3);
-        assertEquals(3, uusi.data[0], 0);
+        this.nelio.vakiollaKertominen(3);
+        assertEquals(3, this.nelio.data[0], 0);
     }
     
      @Test
     public void laskeekoSummanOikein() {
-        VastausMatriisi uusi1 = this.nelio.summa(this.m);
-        assertEquals(4, uusi1.m.data[1], 0);
-        VastausMatriisi uusi2 = this.nelio.summa(this.suorakulmio);
-        assertFalse(uusi2.onnistui);
+        assertTrue(this.nelio.summa(this.m));
+        assertEquals(4, m.data[1], 0);
+    }
+    
+    @Test
+    public void laskeeErotuksenOikein() {
+        assertTrue(this.nelio.erotus(this.m));
+        assertEquals(0, m.data[1], 0);
     }
 }
