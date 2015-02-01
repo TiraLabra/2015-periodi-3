@@ -6,6 +6,8 @@
               [5  6  7  8]
               [9  10 11 12]
               [13 14 15 16]])
+(def testcase2 [[1  2]
+                [13 14]])
 
 (deftest multiply.row-iteration
   (testing "if the row iteration returns an matrix with elements defined
@@ -40,3 +42,12 @@
   (testing "that the function returns submatrix specified in params."
     (is (= (sub-matrix testcase 0 0 (count testcase)) testcase))
     (is (= (sub-matrix testcase 3 3 1) [[16]]))))
+
+(deftest multiply.concat-matrices.matrices-not-same-type
+  (testing "that function throws error if the matrices are not same type."
+    (is (thrown? Exception (concat-matrices testcase testcase testcase testcase2)))))
+
+(deftest multiply.concat-matrices.matrices-are-same-type
+  (testing "that function returns four time bigger matrix."
+    (is (= (count (concat-matrices testcase testcase testcase testcase)) (* 2 (count testcase))))
+    (is (= (concat-matrices testcase2 testcase2 testcase2 [[7 7][9 9]])  [[1 2 1 2][13 14 13 14][1 2 7 7][13 14 9 9]]))))

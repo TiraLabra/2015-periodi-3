@@ -51,12 +51,23 @@
          (take how-long (drop fromY matrix))))))
 
 (defn concat-matrices
+  "Concat the four given matrices into one (four time)bigger square matrix.
+
+  m11, m21, m12, m22 will be merged to [[m11 m12]
+                                        [m21 m22]].
+  The given matrices should be same type."
   [m11 m21 m12 m22]
-  (let [concat-two (fn [upper lower] (vec (concat upper lower)))]
-    (vec (map (fn [left right]
-           (vec (concat left right)))
-         (concat-two m11 m21)
-         (concat-two m12 m22)))))
+  (let [test-x (fn [x] (count (first x)))
+        test-y (fn [y] (count y))]
+    (if (not (and (= (test-x m11)(test-x m21)(test-x m12)(test-x m22))
+                  (= (test-y m11)(test-y m21)(test-y m12)(test-y m22))))
+      (matrices-are-not-valid-type)
+
+      (let [concat-two (fn [upper lower] (vec (concat upper lower)))]
+        (vec (map (fn [left right]
+             (vec (concat left right)))
+             (concat-two m11 m21)
+             (concat-two m12 m22)))))))
 
 (defn strassen
   [matrixA matrixB]
