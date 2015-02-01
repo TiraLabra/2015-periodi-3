@@ -35,3 +35,8 @@
      of the bounds of the original matrix."
     (is (thrown? Exception (sub-matrix testcase 3 1 2)))
     (is (thrown? Exception (sub-matrix testcase 1 1 5)))))
+
+(deftest multiply.sub-matrix.valid-params
+  (testing "that the function returns submatrix specified in params."
+    (is (= (sub-matrix testcase 0 0 (count testcase)) testcase))
+    (is (= (sub-matrix testcase 3 3 1) [[16]]))))
