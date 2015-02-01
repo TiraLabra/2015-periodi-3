@@ -38,10 +38,17 @@
                             (reduce + (map * x y))
                             (round 3 (reduce + (map * x y))))) matrixA (transpose matrixB)))))
 
-(defn sub-matrix [matrix fromX fromY how-long]
-  (vec ( map (fn [row]
-         (vec (take how-long (drop fromX row))))
-       (take how-long (drop fromY matrix)))))
+(defn sub-matrix
+  "Returns a submatrix of given matrix that starts from the index
+  specified by the parameters fromX and fromY and continues to
+  right (x grows) and down (y grows) 'how-long' steps."
+  [matrix fromX fromY how-long]
+  (if (or (< (count matrix) (+ fromY how-long))
+          (< (count (first matrix)) (+ fromX how-long)))
+    (index-out-of-bound)
+    (vec ( map (fn [row]
+           (vec (take how-long (drop fromX row))))
+         (take how-long (drop fromY matrix))))))
 
 (defn concat-matrices
   [m11 m21 m12 m22]

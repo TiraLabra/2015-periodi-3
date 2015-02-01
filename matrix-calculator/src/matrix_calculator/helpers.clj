@@ -5,6 +5,8 @@
   (throw (Exception. "Invalid matrix!")))
 (defn matrices-are-not-valid-type []
   (throw (Exception. "The given matrices are not valid type! ")))
+(defn index-out-of-bound []
+  (throw (Exception. "The given parameters are out of bound! ")))
 
 (defn round
   "Helper function for rounding big decimals."
