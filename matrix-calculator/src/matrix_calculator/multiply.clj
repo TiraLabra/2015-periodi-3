@@ -69,6 +69,25 @@
              (concat-two m11 m21)
              (concat-two m12 m22)))))))
 
+(defn is-power-of-two? [x]
+  (cond
+   (or (= x 2.0)(= x 2)) true
+   (not (or (= (mod x 2) 0) (= (mod x 2) 0.0))) false
+   :else
+     (recur (float (/ x 2)))))
+
+(defn find-next-power-of-two
+  [matrix]
+  (if (is-power-of-two? (count matrix))
+    matrix
+    (recur (expand-matrix-by-one matrix))))
+
+(defn expand-matrix-by-one
+  [matrix]
+  (let [add-zero (fn [x] (conj x 0))]
+    (vec (conj
+     (vec (map add-zero matrix))
+     (vec (repeat (inc (count matrix))0))))))
 
 (defn strassen
   "Multiplies matrices like function matrix-multiplication, but run faster.
@@ -80,6 +99,15 @@
   This implementation of algorithm works only for square matrices, which have the size of power of two(2,4,6,16...).
   Therefore square matrices of different size are expanded to next power of two and after multiplication the
   function returns submatrix that corresponds the size of original matrices."
+  [matrixA matrixB]
+  (let [original-size (count matrixA)
+        expanded-matrix-a (find-next-power-of-two matrixA)
+        expanded-matrix-b (find-next-power-of-two matrixB)]
+    (sub-matrix
+     (strassen-recur expanded-matrix-a expanded-matrix-b)
+     0 0 original-size)))
+
+(defn strassen-recur
   [matrixA matrixB]
   (let [n (count matrixA)]
     (if (<= n 2)
