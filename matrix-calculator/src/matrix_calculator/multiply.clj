@@ -69,7 +69,17 @@
              (concat-two m11 m21)
              (concat-two m12 m22)))))))
 
+
 (defn strassen
+  "Multiplies matrices like function matrix-multiplication, but run faster.
+  Matrix-multiplication needs O(n^3) operations but strassen do it with
+  O(n^2.81). The performance increase is acchieved by splitting matrices to four pieces and
+  calculating in O(1) time new matrices (http://en.wikipedia.org/wiki/Strassen_algorithm).
+  Algorithm calls itself recursively with new matrices until sizes of matrices are two or lower.
+
+  This implementation of algorithm works only for square matrices, which have the size of power of two(2,4,6,16...).
+  Therefore square matrices of different size are expanded to next power of two and after multiplication the
+  function returns submatrix that corresponds the size of original matrices."
   [matrixA matrixB]
   (let [n (count matrixA)]
     (if (<= n 2)
