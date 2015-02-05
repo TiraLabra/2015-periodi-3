@@ -15,10 +15,27 @@ public class Tiralabra {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-//        Matriisi nelio = new Matriisi(new double[4], 2, 2);
-//        Matriisi uusi = nelio.vakiollaKertominen(3);
-//        for (int i = 0; i < uusi.data.length; i++) {
-//            System.out.println(uusi.data[i]);
-        }
+//        Matriisi nelio;
+//        Matriisi suorakulmio;
+//        Matriisi m;
+//        nelio = new Matriisi(new double[4], 2, 2);
+//        suorakulmio = new Matriisi(new double[8], 4, 2);
+//        m = new Matriisi(new double[4], 2, 2);
+//        for (int i = 0; i < nelio.data.length; i++) {
+//            nelio.data[i] = i+1;
+//        }
+//        for (int i = 0; i < m.data.length; i++) {
+//            m.data[i] = 2;
+//        }
+//        for (int i = 0; i < suorakulmio.data.length; i++) {
+//            suorakulmio.data[i] = i;
+//        }
+//        suorakulmio.data[0] = 1;
+//
+//        System.out.println(nelio.data[3]);
+//        System.out.println(suorakulmio.data[7]);
+//        
+//        suorakulmio.kertolasku(nelio);
+//        System.out.println(suorakulmio.data[7]);
+  }
 }

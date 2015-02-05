@@ -72,19 +72,34 @@ public class Matriisi {
      * @param m, toinen lakutoimituksen alkioista.
      * @return matriisien tulos
      */
-//    public VastausMatriisi kertolasku(Matriisi m) {
-//        if(this.leveys != m.korkeus) {
-//            return new VastausMatriisi(false, new Matriisi(new double[1], 1, 1));
-//        }
-//        Matriisi uusiM = new Matriisi(new double[this.matriisi.length], this.korkeus, this.leveys);
-//        for (int i = 0; i < m.korkeus; i++) {
-//            for (int j = 0; j < this.leveys; j++) {
-//                uusiM.matriisi[j+uusiM.leveys*i] = this.matriisi[j+this.leveys*i] + m.matriisi[i+m.korkeus*j];
-//            }
-//        }
-//        
-//        return;
-//    }
+    public boolean kertolasku(Matriisi m) {
+        if(this.korkeus != m.leveys) {
+            return false;
+        }
+        
+        Matriisi uusiM = new Matriisi(new double[m.korkeus*this.leveys], this.leveys, m.korkeus);
+        for (int x = 0; x < m.korkeus; x++) {
+            for (int i = 0; i < this.leveys; i++) {
+                double summa = 0;
+                for (int j = 0; j < m.leveys; j++) {
+                    summa = summa + m.data[j+m.leveys*x] * this.data[i+this.leveys*j] ; 
+                }
+//                System.out.println(summa);
+                uusiM.data[i+uusiM.leveys*x] = summa;
+//                System.out.println(uusiM.data[i+uusiM.leveys*x]);
+            }
+        }
+//        System.out.println("\n");
+        this.korkeus = uusiM.korkeus;
+        this.leveys = uusiM.leveys;
+        this.data = new double[uusiM.korkeus*uusiM.leveys];
+        for (int i = 0; i < this.data.length; i++) {
+            this.data[i] = uusiM.data[i];
+//            System.out.println(this.data[i]);
+        }
+        
+        return true;
+    }
     
     /**
      *Laskee matriisien erotuksen.
@@ -124,18 +139,19 @@ public class Matriisi {
 //    public int determinantti(Matriisi m) {
 //        return 1;
 //    }
-//    
-//    /**
-//     *Muodostaa matriisin transpoosin. 
-//     * @return Matriisin transpoosi.
-//     */
-//    public boolean transpoosi() {
-//        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
-//        for (int i = 0; i < this.korkeus; i++) {
-//            for (int j = 0; j < this.leveys; j++) {
-//                uusiM.data[j+uusiM.leveys*i] = 
-//            }
-//        }
-//        return true;
-//    }
+    
+    /**
+     *Muodostaa matriisin transpoosin. 
+     * @return Matriisin transpoosi.
+     */
+    public boolean transpoosi() {
+        Matriisi uusiM = new Matriisi(new double[this.data.length], this.korkeus, this.leveys);
+        for (int i = 0; i < this.korkeus; i++) {
+            for (int j = 0; j < this.leveys; j++) {
+                uusiM.data[i+uusiM.leveys*j] = this.data[j+this.leveys*i]; 
+            }
+        }
+        this.data = uusiM.data;
+        return true;
+    }
 }

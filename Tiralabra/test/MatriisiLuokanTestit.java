@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import tiralabra.Matriisi;
-import tiralabra.VastausMatriisi;
+
 
 /**
  *
@@ -38,14 +38,16 @@ public class MatriisiLuokanTestit {
     @Before
     public void setUp() {
         this.nelio = new Matriisi(new double[4], 2, 2);
-        this.suorakulmio = new Matriisi(new double[32], 4, 8);
+        this.suorakulmio = new Matriisi(new double[8], 4, 2);
         this.m = new Matriisi(new double[4], 2, 2);
-        this.nelio.data[0] = 1;
-        this.nelio.data[1] = 2;
-        this.nelio.data[2] = 3;
-        this.nelio.data[3] = 4;
+        for (int i = 0; i < this.nelio.data.length; i++) {
+            this.nelio.data[i] = i+1;
+        }
         for (int i = 0; i < this.m.data.length; i++) {
             this.m.data[i] = 2;
+        }
+        for (int i = 0; i < this.suorakulmio.data.length; i++) {
+            this.suorakulmio.data[i] = i;
         }
     }
     
@@ -61,10 +63,10 @@ public class MatriisiLuokanTestit {
     
     @Test
     public void rakentaakoMatriisinOikein() {
-        assertTrue(nelio.onNelio());
-        assertFalse(suorakulmio.onNelio());
+        assertTrue(this.nelio.onNelio());
+        assertFalse(this.suorakulmio.onNelio());
         assertEquals(2, this.nelio.leveys);
-        assertEquals(8, this.suorakulmio.korkeus);
+        assertEquals(2, this.suorakulmio.korkeus);
     }
     
     @Test
@@ -76,12 +78,29 @@ public class MatriisiLuokanTestit {
      @Test
     public void laskeekoSummanOikein() {
         assertTrue(this.nelio.summa(this.m));
-        assertEquals(4, m.data[1], 0);
+        assertEquals(4, this.m.data[1], 0);
     }
     
     @Test
     public void laskeeErotuksenOikein() {
         assertTrue(this.nelio.erotus(this.m));
-        assertEquals(0, m.data[1], 0);
+        assertEquals(0, this.m.data[1], 0);
+    }
+    
+    @Test
+    public void muodostaaTranspoosinOikein() {
+        assertTrue(this.nelio.transpoosi());
+        assertEquals(2, this.m.data[1], 0);
+    }
+    
+    @Test
+    public void laskeeKertolaskunOikein() {
+        assertTrue(this.nelio.kertolasku(m));
+        assertEquals(12, this.nelio.data[1], 0);
+        for (int i = 0; i < this.nelio.data.length; i++) {
+            this.nelio.data[i] = i+1;
+        }
+        assertTrue(this.suorakulmio.kertolasku(this.nelio));
+        assertEquals(37, this.suorakulmio.data[7], 0);
     }
 }
