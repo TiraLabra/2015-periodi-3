@@ -1,0 +1,154 @@
+<html>
+ <head>
+  <link rel="stylesheet" href="../coverage.css"/>  <title> matrix_calculator/basic_features.clj </title>
+ </head>
+ <body>
+<span class="partial" title="32 out of 33 forms covered">
+                 001&nbsp;&nbsp;(ns&nbsp;matrix_calculator.basic_features
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 002&nbsp;&nbsp;&nbsp;&nbsp;(:use&nbsp;matrix_calculator.helpers))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 003&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 004&nbsp;&nbsp;(defn&nbsp;each-elem-in-matrices
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 005&nbsp;&nbsp;&nbsp;&nbsp;[matrix-a&nbsp;matrix-b&nbsp;function]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 007&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(or
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                 008&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not=&nbsp;(count&nbsp;matrix-a)&nbsp;(count&nbsp;matrix-b))
+                </span><br/>
+<span class="covered" title="11 out of 11 forms covered">
+                 009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not=&nbsp;(count&nbsp;(first&nbsp;matrix-a))&nbsp;(count&nbsp;(first&nbsp;matrix-b))))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(matrices-are-not-valid-type)
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                 011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[add-row&nbsp;(fn&nbsp;[row-a&nbsp;row-b]&nbsp;(vec&nbsp;(map&nbsp;function&nbsp;row-a&nbsp;row-b)))]
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                 012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(map&nbsp;add-row&nbsp;matrix-a&nbsp;matrix-b)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 013&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 014&nbsp;&nbsp;(defn&nbsp;add-two-matrices
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 015&nbsp;&nbsp;&nbsp;&nbsp;"Takes&nbsp;two&nbsp;matrices&nbsp;as&nbsp;parameters.&nbsp;If&nbsp;the&nbsp;matrices&nbsp;are&nbsp;same&nbsp;type,&nbsp;sums&nbsp;them:
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 016&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;say,&nbsp;add&nbsp;every&nbsp;element&nbsp;of&nbsp;matrix-a&nbsp;to&nbsp;an&nbsp;according&nbsp;one&nbsp;of&nbsp;b.&nbsp;Returns&nbsp;an&nbsp;new&nbsp;matrix&nbsp;of&nbsp;same&nbsp;type.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 017&nbsp;&nbsp;&nbsp;&nbsp;(A&nbsp;+&nbsp;B)(i,j)&nbsp;=&nbsp;A(i,&nbsp;j)&nbsp;+&nbsp;B(i,&nbsp;j)&nbsp;for&nbsp;all&nbsp;i&nbsp;to&nbsp;m&nbsp;and&nbsp;j&nbsp;to&nbsp;n,&nbsp;where&nbsp;m*n&nbsp;is&nbsp;the&nbsp;size/type&nbsp;of&nbsp;the&nbsp;matrices.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 018&nbsp;&nbsp;&nbsp;&nbsp;http://en.wikipedia.org/wiki/Matrix_addition"
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 019&nbsp;&nbsp;&nbsp;&nbsp;[matrix-a&nbsp;matrix-b]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                 020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(each-elem-in-matrices&nbsp;matrix-a&nbsp;matrix-b&nbsp;(fn&nbsp;[x&nbsp;y]&nbsp;(+&nbsp;x&nbsp;y))))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 021&nbsp;&nbsp;;&nbsp;HUOM&nbsp;alla&nbsp;olevaan&nbsp;testit&nbsp;ja&nbsp;dokumentaatio&nbsp;kommentti
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 022&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 023&nbsp;&nbsp;(defn&nbsp;subtract-two-matrices
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 024&nbsp;&nbsp;&nbsp;&nbsp;"Works&nbsp;as&nbsp;previous&nbsp;funtion&nbsp;and&nbsp;matrix&nbsp;addition,&nbsp;but&nbsp;instead&nbsp;of&nbsp;addition&nbsp;it&nbsp;does&nbsp;subtraction&nbsp;to&nbsp;every&nbsp;element.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 025&nbsp;&nbsp;&nbsp;&nbsp;(A&nbsp;-&nbsp;B)(i,j)&nbsp;=&nbsp;A(i,&nbsp;j)&nbsp;-&nbsp;B(i,&nbsp;j)&nbsp;for&nbsp;all&nbsp;i&nbsp;to&nbsp;m&nbsp;and&nbsp;j&nbsp;to&nbsp;n"
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[matrix-a&nbsp;matrix-b]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                 027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(each-elem-in-matrices&nbsp;matrix-a&nbsp;matrix-b&nbsp;(fn&nbsp;[x&nbsp;y]&nbsp;(-&nbsp;x&nbsp;y))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 028&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 029&nbsp;&nbsp;(defn&nbsp;scalar-product
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 030&nbsp;&nbsp;&nbsp;&nbsp;"Takes&nbsp;one&nbsp;number&nbsp;and&nbsp;one&nbsp;matrix&nbsp;as&nbsp;parameters.&nbsp;Multiples&nbsp;every&nbsp;element&nbsp;of&nbsp;matrix&nbsp;by&nbsp;the&nbsp;scalar.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 031&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;a&nbsp;new&nbsp;matrix,&nbsp;which&nbsp;applies&nbsp;to&nbsp;formula&nbsp;(cA)(i,j)&nbsp;=&nbsp;c&nbsp;*&nbsp;A(i,&nbsp;j)&nbsp;where&nbsp;c&nbsp;is&nbsp;the&nbsp;scalar,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 032&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;a&nbsp;matrix&nbsp;and&nbsp;i&nbsp;and&nbsp;j&nbsp;the&nbsp;indexes&nbsp;of&nbsp;matrix."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 033&nbsp;&nbsp;&nbsp;&nbsp;[scalar&nbsp;matrix]
+                </span><br/>
+<span class="covered" title="15 out of 15 forms covered">
+                 034&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(or&nbsp;(not&nbsp;(is-matrix?&nbsp;matrix))&nbsp;(not&nbsp;(number?&nbsp;scalar)))
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.&nbsp;"You&nbsp;should&nbsp;give&nbsp;one&nbsp;number&nbsp;and&nbsp;one&nbsp;valid&nbsp;matrix."))
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(make-matrix&nbsp;(count&nbsp;matrix)&nbsp;(count&nbsp;(first&nbsp;matrix))
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                 037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map&nbsp;(fn&nbsp;[elem]&nbsp;(*&nbsp;elem&nbsp;scalar))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(apply&nbsp;concat&nbsp;matrix)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 039&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 040&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 041&nbsp;&nbsp;(defn&nbsp;transpose
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 042&nbsp;&nbsp;&nbsp;&nbsp;"Changes&nbsp;the&nbsp;rows&nbsp;and&nbsp;columns&nbsp;of&nbsp;matrix.&nbsp;Transpose&nbsp;of&nbsp;matrix
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 043&nbsp;&nbsp;&nbsp;&nbsp;[1&nbsp;2]&nbsp;&nbsp;is&nbsp;[1&nbsp;3&nbsp;5]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 044&nbsp;&nbsp;&nbsp;&nbsp;[3&nbsp;4]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2&nbsp;4&nbsp;6]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 045&nbsp;&nbsp;&nbsp;&nbsp;[5&nbsp;6]"
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 046&nbsp;&nbsp;&nbsp;&nbsp;[matrix]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                 047&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(not&nbsp;(is-matrix?&nbsp;matrix))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(invalid-matrix-notification)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(apply&nbsp;map&nbsp;vector&nbsp;matrix)))
+                </span><br/>
+ </body>
+</html>
