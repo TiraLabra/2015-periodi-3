@@ -55,3 +55,8 @@
 (deftest helpers.set-elem
   (testing "setter called set-elem"
     (is (= (get-elem (set-elem test-m 0 0 100) 0 0) 100))))
+
+(deftest helpers.exp
+  (testing "that returns correct values"
+    (is (= (exp 2 6) 64))
+    (is (= (exp 10 3) 1000))))

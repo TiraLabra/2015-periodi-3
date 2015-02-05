@@ -76,6 +76,8 @@
     (vec (map row  (repeat y [x])))))
 
 (defn exp [x n]
+  "Rises number x to it's n'th exponent x^n.
+  http://en.wikipedia.org/wiki/Exponentiation"
   (loop [acc 1 n n]
     (if (zero? n) acc
         (recur (* x acc) (dec n)))))
