@@ -1,0 +1,5 @@
+Viikkoraportti 2
+5.2.2015
+
+Matriisin transpoosi ja kertolasku toteutettu, sekä niiden testit. Jouduin testaamaan kertolaskua vielä käsin, jotta sain indeksit toimimaan tulostamalla välituloksia ja debuggaamalla. 
+
