@@ -2,6 +2,11 @@
   (:require [clojure.test :refer :all]
             [matrix_calculator.helpers :refer :all]))
 
+(def test-m
+  [[1 2 3]
+   [3 4 5]
+   [6 7 8]])
+
 (deftest helpers.take-until.zero
   (testing "With parameter zero, returnvalue contains one empty element."
     (is (= (take-until 0 []) [[][]]))
@@ -32,13 +37,17 @@
     (is (thrown? Exception (make-matrix 1 1 [1 2])))
     (is (thrown? Exception (make-matrix 2 2 [1 2 3])))))
 
-(deftest paaluokka.is-matrix?
+(deftest helpers.is-matrix?
   (testing "if this function works with some valid and invalid input"
     (is (is-matrix? [[1 4][2 5][3 6]]))
     (is (not (is-matrix? [1 2 3 4 5])))
     (is (not (is-matrix? 875425)))))
 
-(deftest paaluokka.take-column
+(deftest helpers.take-column
   (testing "that helper function works correctly."
     (is (= (take-column 0 [[1][2]]) [1 2] ))
     (is (= (take-column 1 [[2 3][4 5][6 7]]) [3 5 7] ))))
+
+(deftest helpers.get-elem
+  (testing "getter called get-elem")
+  (is (= (get-elem test-m 2 2) 8)))
