@@ -76,12 +76,6 @@
    :else
      (recur (float (/ x 2)))))
 
-(defn find-next-power-of-two
-  [matrix]
-  (if (is-power-of-two? (count matrix))
-    matrix
-    (recur (expand-matrix-by-one matrix))))
-
 (defn expand-matrix-by-one
   [matrix]
   (let [add-zero (fn [x] (conj x 0))]
@@ -89,23 +83,11 @@
      (vec (map add-zero matrix))
      (vec (repeat (inc (count matrix))0))))))
 
-(defn strassen
-  "Multiplies matrices like function matrix-multiplication, but run faster.
-  Matrix-multiplication needs O(n^3) operations but strassen do it with
-  O(n^2.81). The performance increase is acchieved by splitting matrices to four pieces and
-  calculating in O(1) time new matrices (http://en.wikipedia.org/wiki/Strassen_algorithm).
-  Algorithm calls itself recursively with new matrices until sizes of matrices are two or lower.
-
-  This implementation of algorithm works only for square matrices, which have the size of power of two(2,4,6,16...).
-  Therefore square matrices of different size are expanded to next power of two and after multiplication the
-  function returns submatrix that corresponds the size of original matrices."
-  [matrixA matrixB]
-  (let [original-size (count matrixA)
-        expanded-matrix-a (find-next-power-of-two matrixA)
-        expanded-matrix-b (find-next-power-of-two matrixB)]
-    (sub-matrix
-     (strassen-recur expanded-matrix-a expanded-matrix-b)
-     0 0 original-size)))
+(defn find-next-power-of-two
+  [matrix]
+  (if (is-power-of-two? (count matrix))
+    matrix
+    (recur (expand-matrix-by-one matrix))))
 
 (defn strassen-recur
   [matrixA matrixB]
@@ -124,21 +106,21 @@
 
             a-result (add-two-matrices a11 a22)
             b-result (add-two-matrices b11 b22)
-            p1 (strassen a-result b-result)
+            p1 (strassen-recur a-result b-result)
             a-result (add-two-matrices a21 a22)
-            p2 (strassen a-result b11)
+            p2 (strassen-recur a-result b11)
             b-result (subtract-two-matrices b12 b22)
-            p3 (strassen a11 b-result)
+            p3 (strassen-recur a11 b-result)
             b-result (subtract-two-matrices b21 b11)
-            p4 (strassen a22 b-result)
+            p4 (strassen-recur a22 b-result)
             a-result (add-two-matrices a11 a12)
-            p5 (strassen a-result b22)
+            p5 (strassen-recur a-result b22)
             a-result (subtract-two-matrices a21 a11)
             b-result (add-two-matrices b11 b12)
-            p6 (strassen a-result b-result)
+            p6 (strassen-recur a-result b-result)
             a-result (subtract-two-matrices a12 a22)
             b-result (add-two-matrices b21 b22)
-            p7 (strassen a-result b-result)
+            p7 (strassen-recur a-result b-result)
 
             c12 (add-two-matrices p3 p5)
             c21 (add-two-matrices p2 p4)
@@ -149,3 +131,22 @@
             b-result (add-two-matrices a-result p6)
             c22 (subtract-two-matrices b-result p2)]
         (concat-matrices c11 c21 c12 c22)))))
+
+
+(defn strassen
+  "Multiplies matrices like function matrix-multiplication, but run faster.
+  Matrix-multiplication needs O(n^3) operations but strassen do it with
+  O(n^2.81). The performance increase is acchieved by splitting matrices to four pieces and
+  calculating in O(1) time new matrices (http://en.wikipedia.org/wiki/Strassen_algorithm).
+  Algorithm calls itself recursively with new matrices until sizes of matrices are two or lower.
+
+  This implementation of algorithm works only for square matrices, which have the size of power of two(2,4,6,16...).
+  Therefore square matrices of different size are expanded to next power of two and after multiplication the
+  function returns submatrix that corresponds the size of original matrices."
+  [matrixA matrixB]
+  (let [original-size (count matrixA)
+        expanded-matrix-a (find-next-power-of-two matrixA)
+        expanded-matrix-b (find-next-power-of-two matrixB)]
+    (sub-matrix
+     (strassen-recur expanded-matrix-a expanded-matrix-b)
+     0 0 original-size)))
