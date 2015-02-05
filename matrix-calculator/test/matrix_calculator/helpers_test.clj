@@ -51,3 +51,7 @@
 (deftest helpers.get-elem
   (testing "getter called get-elem")
   (is (= (get-elem test-m 2 2) 8)))
+
+(deftest helpers.set-elem
+  (testing "setter called set-elem"
+    (is (= (get-elem (set-elem test-m 0 0 100) 0 0) 100))))
