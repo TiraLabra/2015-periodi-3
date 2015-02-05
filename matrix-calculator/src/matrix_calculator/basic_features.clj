@@ -14,12 +14,15 @@
 (defn add-two-matrices
   "Takes two matrices as parameters. If the matrices are same type, sums them:
   To say, add every element of matrix-a to an according one of b. Returns an new matrix of same type.
-  (A + B)(i,j) = A(i, j) + B(i, j) for all i to m and j to n, where m*n is the size/type of the matrices."
+  (A + B)(i,j) = A(i, j) + B(i, j) for all i to m and j to n, where m*n is the size/type of the matrices.
+  http://en.wikipedia.org/wiki/Matrix_addition"
   [matrix-a matrix-b]
     (each-elem-in-matrices matrix-a matrix-b (fn [x y] (+ x y))))
 ; HUOM alla olevaan testit ja dokumentaatio kommentti
 
 (defn subtract-two-matrices
+  "Works as previous funtion and matrix addition, but instead of addition it does subtraction to every element.
+  (A - B)(i,j) = A(i, j) - B(i, j) for all i to m and j to n"
     [matrix-a matrix-b]
     (each-elem-in-matrices matrix-a matrix-b (fn [x y] (- x y))))
 
