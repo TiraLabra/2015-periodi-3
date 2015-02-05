@@ -62,15 +62,17 @@
   (vec (map (fn [x] (get x index)) matrix)))
 
 (defn get-elem
-  "Returns elem in the spot matrix[x][y]."
-  [matrix x y]
+  "Returns elem in the spot matrix[y][x]."
+  [matrix y x]
   (get (get matrix y) x))
 
 (defn set-elem
+  "Changes the value of index [y][x]."
   [matrix x y new-value]
   (assoc matrix y (assoc (get matrix y) x new-value)))
 
 (defn make-empty-matrix
+  "Returns y * x matrix with where is 0 in every index."
   [y x]
   (let [row (fn [x] (vec (repeat (first x) 0)))]
     (vec (map row  (repeat y [x])))))

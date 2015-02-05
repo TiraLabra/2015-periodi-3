@@ -60,3 +60,9 @@
   (testing "that returns correct values"
     (is (= (exp 2 6) 64))
     (is (= (exp 10 3) 1000))))
+
+(deftest helpers.make-empty-matrix
+  (testing "that matrix has zeros inside."
+    (let [m (make-empty-matrix 2 1)]
+      (is (= (get-elem m 0 0) 0))
+      (is (= (get-elem m 1 0) 0)))))
