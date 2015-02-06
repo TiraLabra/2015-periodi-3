@@ -61,5 +61,23 @@
   (testing "function works"
     (is (= (expand-matrix-by-one testcase2) [[1 2 0][13 14 0][0 0 0]]))))
 
+(deftest multiply.find-next-power-of-two
+  (testing "that function returns correct output."
+    (is (= (find-next-power-of-two testcase2) testcase2))
+    (is (= (find-next-power-of-two testcase) testcase))
+    (is (= (find-next-power-of-two [[1 1 1 1 1]
+                                    [1 1 1 1 1]
+                                    [1 1 1 1 1]
+                                    [1 1 1 1 1]
+                                    [1 1 1 1 1]])
+           [[1 1 1 1 1 0 0 0]
+            [1 1 1 1 1 0 0 0]
+            [1 1 1 1 1 0 0 0]
+            [1 1 1 1 1 0 0 0]
+            [1 1 1 1 1 0 0 0]
+            [0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0]]))))
+
 (deftest multiply.strassen
   (testing "that strassen returns correct values for"))

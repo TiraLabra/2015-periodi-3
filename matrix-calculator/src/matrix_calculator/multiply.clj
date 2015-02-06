@@ -89,6 +89,9 @@
      (vec (repeat (inc (count matrix))0))))))
 
 (defn find-next-power-of-two
+  "With functions is-power-of-two? and expand-matrix-by-one,
+  expands the given square matrix with zero rows and columns
+  until it's size is power of two. "
   [matrix]
   (if (is-power-of-two? (count matrix))
     matrix
