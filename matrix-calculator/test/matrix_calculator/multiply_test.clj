@@ -9,6 +9,13 @@
 (def testcase2 [[1  2]
                 [13 14]])
 
+(def testcase3
+  [[1 2 3 4 5]
+   [2 3 4 5 6]
+   [3 4 5 6 7]
+   [4 5 6 7 8]
+   [5 6 7 8 9]])
+
 (deftest multiply.row-iteration
   (testing "if the row iteration returns an matrix with elements defined
     in the next function."
@@ -80,4 +87,16 @@
             [0 0 0 0 0 0 0 0]]))))
 
 (deftest multiply.strassen
-  (testing "that strassen returns correct values for"))
+  (testing "that strassen returns correct values for matrices. Testcases are verified with GNU Octave"
+    (is (= (strassen testcase3 testcase3)
+           [[55    70    85   100   115]
+            [70    90   110   130   150]
+            [85   110   135   160   185]
+            [100   130   160   190   220]
+            [115   150   185   220   255]]))
+    (is (= (strassen [[4]] [[3]]) [[12]] ))
+    (is (= (strassen testcase testcase)
+           [[90   100   110   120]
+           [202   228   254   280]
+           [314   356   398   440]
+          [426   484   542   600]]))))
