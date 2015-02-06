@@ -57,5 +57,9 @@
     (is (is-power-of-two? 256))
     (is (not (is-power-of-two? 17)))))
 
+(deftest multiply.expand-matrix-by-one
+  (testing "function works"
+    (is (= (expand-matrix-by-one testcase2) [[1 2 0][13 14 0][0 0 0]]))))
+
 (deftest multiply.strassen
   (testing "that strassen returns correct values for"))

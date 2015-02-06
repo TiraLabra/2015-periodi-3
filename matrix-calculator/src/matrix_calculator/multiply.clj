@@ -70,6 +70,9 @@
              (concat-two m12 m22)))))))
 
 (defn is-power-of-two? [x]
+  "Returns true, if the parameter x can be produced by taking an
+  an exponent of two. To say, numbers 2,4,8,16,32,64.. etc returns
+  true, others false."
   (cond
    (or (= x 2.0)(= x 2)) true
    (not (or (= (mod x 2) 0) (= (mod x 2) 0.0))) false
@@ -77,6 +80,8 @@
      (recur (float (/ x 2)))))
 
 (defn expand-matrix-by-one
+  "Returns an square matrix whose size is one bigger than original.
+  New slots are fulfilled with zeros."
   [matrix]
   (let [add-zero (fn [x] (conj x 0))]
     (vec (conj
