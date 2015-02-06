@@ -52,5 +52,10 @@
     (is (= (count (concat-matrices testcase testcase testcase testcase)) (* 2 (count testcase))))
     (is (= (concat-matrices testcase2 testcase2 testcase2 [[7 7][9 9]])  [[1 2 1 2][13 14 13 14][1 2 7 7][13 14 9 9]]))))
 
+(deftest multiply.is-power-of-two?
+  (testing "that function recognizes powers of two."
+    (is (is-power-of-two? 256))
+    (is (not (is-power-of-two? 17)))))
+
 (deftest multiply.strassen
   (testing "that strassen returns correct values for"))
