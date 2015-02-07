@@ -19,7 +19,7 @@
          i i
          a a
          b 0]
-    (if (= i (count matrix))
+    (if (= b (count matrix))
       smaller
       (recur matrix
              (change-values
@@ -32,7 +32,7 @@
          smaller smaller
          i i
          a 1]
-    (if (= i (count matrix))
+    (if (= a (count matrix))
       smaller
       (recur matrix
              (iterate-matrix-b
@@ -49,20 +49,21 @@
              sum 0
              smaller (make-empty-matrix (dec length)(dec length))
              i 0]
-        (let [even (mod i 0)]
+        (let [even (= (mod i 2) 0)
+              new-smaller (iterate-matrix-a matrix smaller i)]
           (cond
            (= i length) sum
            even (recur
                  length
                  matrix
-                 (+ sum (* (get-elem matrix 0 i) (determinant
-                                                    (iterate-matrix-a matrix smaller i))))
+                 (+ sum (* (get-elem matrix 0 i) (determinant new-smaller)))
+                 new-smaller
                  (inc i))
            :else (recur
                   length
                   matrix
-                  (- sum (* (get-elem matrix 0 1) (determinant
-                                                     (iterate-matrix-a matrix smaller i))))
+                  (- sum (* (get-elem matrix 0 1) (determinant new-smaller)))
+                  new-smaller
                   (inc i))))))))
 
 ;
