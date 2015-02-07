@@ -68,7 +68,7 @@
 
 (defn set-elem
   "Changes the value of index [y][x]."
-  [matrix x y new-value]
+  [matrix y x new-value]
   (assoc matrix y (assoc (get matrix y) x new-value)))
 
 (defn make-empty-matrix
