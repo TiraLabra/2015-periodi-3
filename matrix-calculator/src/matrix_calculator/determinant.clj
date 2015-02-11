@@ -11,7 +11,6 @@
     (> b i) (set-elem smaller (dec a) (dec b) new-elem)
     :else smaller)))
 
-
 (defn iterate-matrix-b
   [matrix smaller i a]
   (loop [matrix matrix
@@ -21,10 +20,7 @@
          b 0]
     (if (= b (count matrix))
       smaller
-      (recur matrix
-             (change-values
-              matrix smaller i a b)
-             i a (inc b)))))
+      (recur matrix (change-values matrix smaller i a b)i a (inc b)))))
 
 (defn iterate-matrix-a
   [matrix smaller i]
@@ -34,10 +30,7 @@
          a 1]
     (if (= a (count matrix))
       smaller
-      (recur matrix
-             (iterate-matrix-b
-                matrix smaller i a)
-             i (inc a)))))
+      (recur matrix (iterate-matrix-b matrix smaller i a) i (inc a)))))
 
 
 (defn determinant [matrix]
@@ -53,17 +46,7 @@
               new-smaller (iterate-matrix-a matrix smaller i)]
           (cond
            (= i length) sum
-           even (recur
-                 length
-                 matrix
-                 (+ sum (* (get-elem matrix 0 i) (determinant new-smaller)))
-                 new-smaller
-                 (inc i))
-           :else (recur
-                  length
-                  matrix
-                  (- sum (* (get-elem matrix 0 1) (determinant new-smaller)))
-                  new-smaller
-                  (inc i))))))))
+           even (recur length matrix (+ sum (* (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))
+           :else (recur length matrix (- sum (* (get-elem matrix 0 1) (determinant new-smaller))) new-smaller (inc i))))))))
 
 ;
