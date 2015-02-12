@@ -33,7 +33,9 @@
       (recur matrix (iterate-matrix-b matrix smaller i a) i (inc a)))))
 
 
-(defn determinant [matrix]
+(defn determinant
+  ""
+  [matrix]
   (let [length (count matrix)]
     (if (= length 1)
       (get-elem matrix 0 0) ;The determinant of one sized matrix is the only number inside.

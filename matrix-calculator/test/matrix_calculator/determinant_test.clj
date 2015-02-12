@@ -43,10 +43,17 @@
          [2 2 4]
          [4 4 8]])
 
+(def m30 [[0 0 0]
+         [0 0 0]
+         [0 0 0]])
+
+(def mr1 [[0 0 0] [4 8 0] [0 0 0]])
+(def mr2 [[0 0 0] [7 29 0] [0 0 0]])
 
 
-(deftest multiply.determinant
-  (testing "det"
+
+(deftest determinant.determinant
+  (testing "determinants"
     (is (= (determinant m1)) -3)
     (is (= (determinant m2) 24))
     (is (= (determinant m3) 177))
@@ -57,3 +64,8 @@
     (is (= (determinant m8) -1))
     (is (= (determinant m9) -2))
     (is (= (determinant m10) 0))))
+
+(deftest determinant.iterate-matrix-b
+  (testing "that function works."
+    (is (= (iterate-matrix-b m10 m30 0 2) mr1))
+    (is (= (iterate-matrix-b m5 m30 1 2) mr2))))
