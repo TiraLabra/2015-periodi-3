@@ -20,7 +20,7 @@
          b 0]
     (if (= b (count matrix))
       smaller
-      (recur matrix (change-values matrix smaller i a b)i a (inc b)))))
+      (recur matrix (change-values matrix smaller i a b) i a (inc b)))))
 
 (defn iterate-matrix-a
   [matrix smaller i]
@@ -45,8 +45,8 @@
         (let [even (= (mod i 2) 0)
               new-smaller (iterate-matrix-a matrix smaller i)]
           (cond
-           (= i length) sum
-           even (recur length matrix (+ sum (* (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))
-           :else (recur length matrix (- sum (* (get-elem matrix 0 1) (determinant new-smaller))) new-smaller (inc i))))))))
+           (= i until) sum
+           even (recur until matrix (+ sum (* 1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))
+           :else (recur until matrix (+ sum (* -1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))))))))
 
-;
+

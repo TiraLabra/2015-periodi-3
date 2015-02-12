@@ -30,6 +30,19 @@
           [-1 1 3 0]
           [ 2 0 -1 3]])
 
+(def m8 [[1 1 2]
+         [2 3 4]
+         [3 4 5]])
+
+(def m9 [[1 1 2 0]
+         [2 3 4 0]
+         [3 4 5 0]
+         [0 0 0 2]])
+
+(def m10 [[1 1 2]
+         [2 2 4]
+         [4 4 8]])
+
 
 
 (deftest multiply.determinant
@@ -40,4 +53,7 @@
     (is (= (determinant m4) 10))
     (is (= (determinant m5) -77851))
     (is (= (determinant m6) 6))
-    (is (= (determinant m7) 0))))
+    (is (= (determinant m7) 0))
+    (is (= (determinant m8) -1))
+    (is (= (determinant m9) -2))
+    (is (= (determinant m10) 0))))
