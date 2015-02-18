@@ -15,6 +15,7 @@
     :else smaller)))
 
 (defn iterate-matrix-b
+  "Iterates like ."
   [matrix smaller i a]
   (loop [matrix matrix
          smaller smaller
@@ -26,6 +27,7 @@
       (recur matrix (change-values matrix smaller i a b) i a (inc b)))))
 
 (defn iterate-matrix-a
+  "Iterates."
   [matrix smaller i]
   (loop [matrix matrix
          smaller smaller

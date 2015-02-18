@@ -47,8 +47,22 @@
          [0 0 0]
          [0 0 0]])
 
+(def m15 [[1  1  1  1  1  1  1  1  1 ]
+          [0  1  1  1 -1  1  1  0  0 ]
+          [0  0  0  1  1 -1  1  0  1 ]
+          [1  1  1 -1 -1 -1  0  0  1 ]
+          [1  0 -1 -1  1  1  0  0  1 ]
+          [-1 1  0  0  0  0  0  1  1 ]
+          [0  1  1  1  0  0 -1 -1  0 ]
+          [1  1  0  0  1  1  0  0  1 ]
+          [0  0  1  1  0  1 -1 -1 -1 ]])
+
 (def mr1 [[0 0 0] [4 8 0] [0 0 0]])
 (def mr2 [[0 0 0] [7 29 0] [0 0 0]])
+(def mr3 [[0 1 0][0 0 0][0 0 0]])
+(def mr4 [[1 0 0][0 0 0][0 0 0]])
+(def mr5 [[2 4 0] [4 8 0] [0 0 0]])
+(def mr6 [[2 3 0] [3 4 0] [0 0 0]])
 
 
 
@@ -70,8 +84,13 @@
     (is (= (iterate-matrix-b m10 m30 0 2) mr1))
     (is (= (iterate-matrix-b m5 m30 1 2) mr2))))
 
+(deftest determinant.iterate-matrix-a
+  (testing "that function works."
+    (is (= (iterate-matrix-a m10 m30 1) mr5))
+    (is (= (iterate-matrix-a m8 m30 2) mr6))))
+
 (deftest determinant.change-values
   (testing "helper function"
     (is (= (change-values m7 m30 1 1 1) m30))
-    (is (= (change-values m7 m30 3 1 1) [[0 1 0][0 0 0][0 0 0]]))
-    (is (= (change-values m7 m30 0 1 1) [[1 0 0][0 0 0][0 0 0]]))))
+    (is (= (change-values m7 m30 3 1 1) mr3))
+    (is (= (change-values m7 m30 0 1 1) mr4))))
