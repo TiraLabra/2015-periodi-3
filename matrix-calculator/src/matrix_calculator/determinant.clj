@@ -39,7 +39,10 @@
 
 
 (defn determinant
-  ""
+  "Solves the determinant of the given matrix. This implementation is solving problem with brute force in time O(n!).
+  That makes algorithm very slow with bigger than 8x8 matrices.
+
+  http://en.wikipedia.org/wiki/Determinant"
   [matrix]
   (let [length (count matrix)]
     (if (= length 1)
