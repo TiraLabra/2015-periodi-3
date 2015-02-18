@@ -69,3 +69,9 @@
   (testing "that function works."
     (is (= (iterate-matrix-b m10 m30 0 2) mr1))
     (is (= (iterate-matrix-b m5 m30 1 2) mr2))))
+
+(deftest determinant.change-values
+  (testing "helper function"
+    (is (= (change-values m7 m30 1 1 1) m30))
+    (is (= (change-values m7 m30 3 1 1) [[0 1 0][0 0 0][0 0 0]]))
+    (is (= (change-values m7 m30 0 1 1) [[1 0 0][0 0 0][0 0 0]]))))

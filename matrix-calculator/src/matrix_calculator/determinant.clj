@@ -5,7 +5,7 @@
 
 (defn change-values
   "Takes value matrix[a][b] as a new-elem. If given parameter b < i,
-  smaller[a+1][b] = new-elem. If b > i, smaller[a+1][b+1] = new-elem.
+  smaller[a-1][b] = new-elem. If b > i, smaller[a-1][b-1] = new-elem.
   Otherwise smaller is returned without modifications."
   [matrix smaller i a b]
   (let [new-elem (get-elem matrix a b)]
