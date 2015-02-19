@@ -122,3 +122,14 @@
 (deftest determinant.u-matrix
   (is (= (u-matrix mLU1) mr10))
   (is (= (u-matrix mLU2) mr9)))
+
+(deftest determinant.LU-determinant
+  (is (= (LU-determinant m1)) -3)
+  (is (= (LU-determinant m2) 24))
+  (is (= (LU-determinant m3) 177))
+  (is (= (LU-determinant m4) 10))
+  (is (= (LU-determinant m5) -77851))
+  (is (= (LU-determinant m7) 0))
+  (is (= (LU-determinant m8) -1))
+  (is (= (LU-determinant m9) -2))
+  (is (= (determinant m10) 0)))
