@@ -57,13 +57,22 @@
           [1  1  0  0  1  1  0  0  1 ]
           [0  0  1  1  0  1 -1 -1 -1 ]])
 
+(def mLU1 [[1 2 3]
+           [2 1 0]
+           [2 4 1]])
+(def mLU2 [[1 2 3 4]
+           [2 1 0 11]
+           [2 4 1 -8]
+           [-2 14 1 0]])
+
 (def mr1 [[0 0 0] [4 8 0] [0 0 0]])
 (def mr2 [[0 0 0] [7 29 0] [0 0 0]])
 (def mr3 [[0 1 0][0 0 0][0 0 0]])
 (def mr4 [[1 0 0][0 0 0][0 0 0]])
 (def mr5 [[2 4 0] [4 8 0] [0 0 0]])
 (def mr6 [[2 3 0] [3 4 0] [0 0 0]])
-
+(def mr7 [[1 2 3][2 -3 -6][2 -0 -5]])
+(def mr8 [[1 2 3 4][2 -3 -6 3][2 0 -5 -16][-2 -6 29/5 594/5]])
 
 
 (deftest determinant.determinant
@@ -99,3 +108,7 @@
   (testing "helper function"
     (is (= (calcul-rows-and-columns m8 0 0 2) 3))
     (is (= (calcul-rows-and-columns m7 2 2 3) 9))))
+
+(deftest determinant.LU-decompose
+  (is (= (LU-decompose mLU1) mr7))
+  (is (= (LU-decompose mLU2) mr8)))

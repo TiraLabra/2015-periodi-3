@@ -16,7 +16,7 @@
     :else smaller)))
 
 (defn iterate-matrix-b
-  "Iterates like ."
+  "Iterates."
   [matrix smaller i a]
   (loop [matrix matrix
          smaller smaller
@@ -72,7 +72,7 @@
 
 
 
-(defn doolittle
+(defn LU-decompose
   [matrix]
   (reduce
    (fn [matrix-b j]
@@ -114,7 +114,7 @@
 
 (defn LU-determinant
   [matrix]
-  (let [u (dbg (u-matrix (doolittle matrix)))]
+  (let [u (dbg (u-matrix (LU-decompose matrix)))]
     (apply
      *
      (map
