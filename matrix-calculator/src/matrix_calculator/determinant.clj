@@ -62,6 +62,7 @@
 
 
  (defn calcul-rows-and-columns
+  "Helper function for LU-decompose function."
   [matrix j i until]
   (loop [p 0
          result 0]
@@ -73,6 +74,10 @@
 
 
 (defn LU-decompose
+  "Transforms the given matrix to LU-decomposition with the
+  doolittle-algorithm. Runs in O(n^3) time. This is used to solve determinant efficiently.
+
+  http://en.wikipedia.org/wiki/LU_decomposition"
   [matrix]
   (reduce
    (fn [matrix-b j]
