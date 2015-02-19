@@ -71,6 +71,7 @@
              (+ result (* (get-elem matrix p i)(get-elem matrix j p)))))))
 
 
+
 (defn doolittle
   [matrix]
   (reduce
@@ -92,3 +93,21 @@
    matrix
    (range (count matrix))))
 
+
+(defn change-to-zero
+  [matrix i j]
+  (if (> i j)
+    (set-elem matrix i j 0)
+    matrix))
+
+(defn u-matrix
+  [matrix]
+  (reduce
+   (fn [matrix-b i]
+     (reduce
+      (fn [matrix-c j]
+        (change-to-zero matrix-c i j))
+      matrix-b
+      (range (count matrix))))
+   matrix
+   (range (count matrix))))
