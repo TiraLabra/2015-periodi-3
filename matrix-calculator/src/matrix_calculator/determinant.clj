@@ -2,6 +2,7 @@
   (:use matrix_calculator.helpers)
   (:use matrix_calculator.basic_features))
 
+(defmacro dbg[x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#)) ; for debugging
 
 (defn change-values
   "Takes value matrix[a][b] as a new-elem. If given parameter b < i,
@@ -59,4 +60,35 @@
            even (recur until matrix (+ sum (* 1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))
            :else (recur until matrix (+ sum (* -1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))))))))
 
+
+ (defn calcul-rows-and-columns
+  [matrix j i until]
+  (loop [p 0
+         result 0]
+    (if (= p until)
+      result
+      (recur (inc p)
+             (+ result (* (get-elem matrix p i)(get-elem matrix j p)))))))
+
+
+(defn doolittle
+  [matrix]
+  (reduce
+   (fn [matrix-b j]
+     (let [a (reduce
+      (fn [matrix-c i]
+        (let [new-elem (- (get-elem matrix-c j i)
+                          (calcul-rows-and-columns matrix-c j i i))]
+          (set-elem matrix-c j i (/ new-elem (get-elem matrix-c i i)))))
+      matrix-b
+      (range j))]
+       (reduce
+        (fn [matrix-d i]
+          (let [new-elem (- (get-elem matrix-d j i)
+                            (calcul-rows-and-columns matrix-d j i j))]
+            (set-elem matrix-d j i new-elem)))
+        a
+        (range j (count matrix)))))
+   matrix
+   (range (count matrix))))
 
