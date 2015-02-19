@@ -107,6 +107,7 @@
     matrix))
 
 (defn u-matrix
+  "Transforms given matrix to U-matrix."
   [matrix]
   (reduce
    (fn [matrix-b i]

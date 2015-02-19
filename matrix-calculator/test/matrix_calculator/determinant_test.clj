@@ -73,6 +73,8 @@
 (def mr6 [[2 3 0] [3 4 0] [0 0 0]])
 (def mr7 [[1 2 3][2 -3 -6][2 -0 -5]])
 (def mr8 [[1 2 3 4][2 -3 -6 3][2 0 -5 -16][-2 -6 29/5 594/5]])
+(def mr9 [[1 2 3 4][0 1 0 11][0 0 1 -8][0 0 0 0]])
+(def mr10 [[1 2 3][0 1 0][0 0 1]])
 
 
 (deftest determinant.determinant
@@ -116,3 +118,7 @@
 (deftest determinant.change-to-zero
   (is (= (change-to-zero m1 1 0) [[1 2][0 1]]))
   (is (= (change-to-zero m1 0 1) [[1 2][2 1]])))
+
+(deftest determinant.u-matrix
+  (is (= (u-matrix mLU1) mr10))
+  (is (= (u-matrix mLU2) mr9)))
