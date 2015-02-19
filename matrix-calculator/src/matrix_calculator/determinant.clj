@@ -85,7 +85,7 @@
       (fn [matrix-c i]
         (let [new-elem (- (get-elem matrix-c j i)
                           (calcul-rows-and-columns matrix-c j i i))]
-          (set-elem matrix-c j i (if (= 0(get-elem matrix-c i i))
+          (set-elem matrix-c j i (if (= 0 (get-elem matrix-c i i))
                                    0
                                    (/ new-elem (get-elem matrix-c i i))))))
       matrix-b
@@ -123,7 +123,7 @@
 
 (defn LU-determinant
   "Solves determinant of the given matrix faster than brute force solution.
-  http://en.wikipedia.org/wiki/LU_decomposition"
+  http://en.wikipedia.org/wiki/LU_decomposition
   "
   [matrix]
   (let [u (u-matrix (LU-decompose matrix))]
