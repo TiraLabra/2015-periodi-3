@@ -112,3 +112,7 @@
 (deftest determinant.LU-decompose
   (is (= (LU-decompose mLU1) mr7))
   (is (= (LU-decompose mLU2) mr8)))
+
+(deftest determinant.change-to-zero
+  (is (= (change-to-zero m1 1 0) [[1 2][0 1]]))
+  (is (= (change-to-zero m1 0 1) [[1 2][2 1]])))

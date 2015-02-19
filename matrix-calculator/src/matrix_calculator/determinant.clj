@@ -100,6 +100,7 @@
 
 
 (defn change-to-zero
+  "Helper function for u-matrix function."
   [matrix i j]
   (if (> i j)
     (set-elem matrix i j 0)
