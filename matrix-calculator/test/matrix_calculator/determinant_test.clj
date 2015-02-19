@@ -94,3 +94,8 @@
     (is (= (change-values m7 m30 1 1 1) m30))
     (is (= (change-values m7 m30 3 1 1) mr3))
     (is (= (change-values m7 m30 0 1 1) mr4))))
+
+(deftest determinant.calcul-rows-and-columns
+  (testing "helper function"
+    (is (= (calcul-rows-and-columns m8 0 0 2) 3))
+    (is (= (calcul-rows-and-columns m7 2 2 3) 9))))
