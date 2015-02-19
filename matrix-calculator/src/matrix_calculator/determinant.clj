@@ -111,3 +111,13 @@
       (range (count matrix))))
    matrix
    (range (count matrix))))
+
+(defn LU-determinant
+  [matrix]
+  (let [u (dbg (u-matrix (doolittle matrix)))]
+    (apply
+     *
+     (map
+     (fn [i]
+       (get-elem u i i))
+     (range (count u))))))
