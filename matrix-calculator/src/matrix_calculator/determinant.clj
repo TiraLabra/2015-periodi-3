@@ -123,6 +123,8 @@
 
 (defn LU-determinant
   "Solves determinant of the given matrix faster than brute force solution.
+  For some unknown reason this implementation works only for all matrices with
+  positive values. Negative values mix things up.
   http://en.wikipedia.org/wiki/LU_decomposition
   "
   [matrix]
