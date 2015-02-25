@@ -45,20 +45,22 @@
 
   http://en.wikipedia.org/wiki/Determinant"
   [matrix]
-  (let [length (count matrix)]
-    (if (= length 1)
-      (get-elem matrix 0 0) ;The determinant of one sized matrix is the only number inside.
-      (loop [until length
-             matrix matrix
-             sum 0
-             smaller (make-empty-matrix (dec length)(dec length))
-             i 0]
-        (let [even (= (mod i 2) 0)
-              new-smaller (iterate-matrix-a matrix smaller i)]
-          (cond
-           (= i until) sum
-           even (recur until matrix (+ sum (* 1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))
-           :else (recur until matrix (+ sum (* -1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))))))))
+  (if (not (is-square-matrix? matrix))
+    (invalid-matrix-notification)
+    (let [length (count matrix)]
+      (if (= length 1)
+        (get-elem matrix 0 0) ;The determinant of one sized matrix is the only number inside.
+        (loop [until length
+               matrix matrix
+               sum 0
+               smaller (make-empty-matrix (dec length)(dec length))
+               i 0]
+          (let [even (= (mod i 2) 0)
+                new-smaller (iterate-matrix-a matrix smaller i)]
+            (cond
+             (= i until) sum
+             even (recur until matrix (+ sum (* 1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i))
+             :else (recur until matrix (+ sum (* -1 (get-elem matrix 0 i) (determinant new-smaller))) new-smaller (inc i)))))))))
 
 
  (defn calcul-rows-and-columns
@@ -85,9 +87,7 @@
       (fn [matrix-c i]
         (let [new-elem (- (get-elem matrix-c j i)
                           (calcul-rows-and-columns matrix-c j i i))]
-          (if (= 0 (get-elem matrix-c i i)) ; jos diagonaalilla on nollia
-            (make-empty-matrix (count matrix) (count matrix)) ;palautetaan nollia
-            (set-elem matrix-c j i (/ new-elem (get-elem matrix-c i i))))))
+            (set-elem matrix-c j i (/ new-elem (get-elem matrix-c i i)))))
         matrix-b
       (range j))]
        (reduce
@@ -121,16 +121,26 @@
    matrix
    (range (count matrix))))
 
+;[[4,1,3,-3,5,4]
+; [4,5,6,6,9,2]
+; [7,8,9,3,4,-1]
+; [1,1,4,2,3,32]
+; [1,-2,3,4,-5]
+; [1,1,0,-3,2,4]]
+
+
 (defn LU-determinant
   "Solves determinant of the given matrix faster than brute force solution.
   For some unknown reason this implementation works only for all matrices with
   positive values. Negative values mix things up.
   http://en.wikipedia.org/wiki/LU_decomposition"
   [matrix]
-  (let [u (u-matrix (LU-decompose matrix))]
-    (apply
-     *
-     (map
-     (fn [i]
-       (get-elem u i i))
-     (range (count u))))))
+  (if (not (is-square-matrix? matrix))
+    (invalid-matrix-notification)
+    (let [u (u-matrix (LU-decompose matrix))]
+      (apply
+       *
+       (map
+       (fn [i]
+         (get-elem u i i))
+       (range (count u)))))))

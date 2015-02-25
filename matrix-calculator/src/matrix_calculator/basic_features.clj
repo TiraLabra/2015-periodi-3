@@ -1,5 +1,5 @@
 (ns matrix_calculator.basic_features
-  (:use matrix_calculator.helpers))
+  (:use [matrix_calculator.helpers]))
 
 (defn each-elem-in-matrices
   [matrix-a matrix-b function]
@@ -18,7 +18,6 @@
   http://en.wikipedia.org/wiki/Matrix_addition"
   [matrix-a matrix-b]
     (each-elem-in-matrices matrix-a matrix-b (fn [x y] (+ x y))))
-; HUOM alla olevaan testit ja dokumentaatio kommentti
 
 (defn subtract-two-matrices
   "Works as previous funtion and matrix addition, but instead of addition it does subtraction to every element.
