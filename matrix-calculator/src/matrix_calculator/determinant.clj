@@ -85,10 +85,10 @@
       (fn [matrix-c i]
         (let [new-elem (- (get-elem matrix-c j i)
                           (calcul-rows-and-columns matrix-c j i i))]
-          (set-elem matrix-c j i (if (= 0 (get-elem matrix-c i i))
-                                   0
-                                   (/ new-elem (get-elem matrix-c i i))))))
-      matrix-b
+          (if (= 0 (get-elem matrix-c i i)) ; jos diagonaalilla on nollia
+            (make-empty-matrix (count matrix) (count matrix)) ;palautetaan nollia
+            (set-elem matrix-c j i (/ new-elem (get-elem matrix-c i i))))))
+        matrix-b
       (range j))]
        (reduce
         (fn [matrix-d i]
@@ -125,8 +125,7 @@
   "Solves determinant of the given matrix faster than brute force solution.
   For some unknown reason this implementation works only for all matrices with
   positive values. Negative values mix things up.
-  http://en.wikipedia.org/wiki/LU_decomposition
-  "
+  http://en.wikipedia.org/wiki/LU_decomposition"
   [matrix]
   (let [u (u-matrix (LU-decompose matrix))]
     (apply
