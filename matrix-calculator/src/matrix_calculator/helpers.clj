@@ -59,7 +59,7 @@
 (defn is-square-matrix?
   "Tests that the param matrix has as many columns as rows"
   [matrix]
-  (apply = (map (fn [x] (count x)) matrix)))
+  (and (= (count matrix)(count (first matrix))) (apply = (map (fn [x] (count x)) matrix))))
 
 (defn take-column
   "Returns elements in the column of given index"

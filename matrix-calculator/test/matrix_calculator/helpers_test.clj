@@ -68,3 +68,7 @@
     (let [m (make-empty-matrix 2 1)]
       (is (= (get-elem m 0 0) 0))
       (is (= (get-elem m 1 0) 0)))))
+
+(deftest helpers.is-square-matrix?
+  (is (is-square-matrix? [[1 2][3 4]]))
+  (is (not (is-square-matrix? [[1 2][2 3][3 4]]))))

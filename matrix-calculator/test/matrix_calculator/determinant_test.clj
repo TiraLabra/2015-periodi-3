@@ -85,6 +85,8 @@
            [2 4 1 -8]
            [-2 14 1 0]])
 
+(def invalidM [[1 2][2 3][3 4]])
+
 (def mr1 [[0 0 0] [4 8 0] [0 0 0]])
 (def mr2 [[0 0 0] [7 29 0] [0 0 0]])
 (def mr3 [[0 1 0][0 0 0][0 0 0]])
@@ -155,3 +157,9 @@
   ;(is (= (LU-determinant m10) 0)) divide by zero
   (is (= (LU-determinant m16) 858))
   (is (= (LU-determinant m17) 29081604984)))
+
+(deftest determinant.determinant.thwows-error
+  (is (thrown? Exception (determinant invalidM))))
+
+(deftest determinant.determinant.thwows-error
+  (is (thrown? Exception (LU-determinant invalidM))))
