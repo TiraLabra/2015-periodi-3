@@ -1,0 +1,262 @@
+<html>
+ <head>
+  <link rel="stylesheet" href="../coverage.css"/>  <title> matrix_calculator/helpers.clj </title>
+ </head>
+ <body>
+<span class="partial" title="30 out of 31 forms covered">
+                 001&nbsp;&nbsp;(ns&nbsp;matrix_calculator.helpers
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 002&nbsp;&nbsp;&nbsp;&nbsp;(:gen-class))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 003&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 004&nbsp;&nbsp;(defn&nbsp;invalid-matrix-notification&nbsp;[]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 005&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.&nbsp;"Invalid&nbsp;matrix!")))
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 006&nbsp;&nbsp;(defn&nbsp;matrices-are-not-valid-type&nbsp;[]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 007&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.&nbsp;"The&nbsp;given&nbsp;matrices&nbsp;are&nbsp;not&nbsp;valid&nbsp;type!&nbsp;")))
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 008&nbsp;&nbsp;(defn&nbsp;index-out-of-bound&nbsp;[]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 009&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.&nbsp;"The&nbsp;given&nbsp;parameters&nbsp;are&nbsp;out&nbsp;of&nbsp;bound!&nbsp;")))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 010&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 011&nbsp;&nbsp;(defn&nbsp;round
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 012&nbsp;&nbsp;&nbsp;&nbsp;"Helper&nbsp;function&nbsp;for&nbsp;rounding&nbsp;big&nbsp;decimals."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 013&nbsp;&nbsp;&nbsp;&nbsp;[decimals&nbsp;number]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 014&nbsp;&nbsp;&nbsp;&nbsp;(double
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.setScale&nbsp;(bigdec&nbsp;number)&nbsp;decimals&nbsp;java.math.RoundingMode/HALF_EVEN)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 016&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 017&nbsp;&nbsp;(defn&nbsp;take-until
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 018&nbsp;&nbsp;&nbsp;&nbsp;"Takes&nbsp;as&nbsp;parameters&nbsp;one&nbsp;number&nbsp;x&nbsp;and&nbsp;list&nbsp;of&nbsp;elements.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 019&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;an&nbsp;array,&nbsp;where&nbsp;first&nbsp;element&nbsp;is&nbsp;x&nbsp;first&nbsp;element&nbsp;of
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 020&nbsp;&nbsp;&nbsp;&nbsp;given&nbsp;array&nbsp;and&nbsp;the&nbsp;second&nbsp;element&nbsp;is&nbsp;an&nbsp;array&nbsp;including&nbsp;the&nbsp;rest."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 021&nbsp;&nbsp;&nbsp;&nbsp;[how-many&nbsp;elems]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 022&nbsp;&nbsp;&nbsp;&nbsp;(loop&nbsp;[x&nbsp;how-many
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elems&nbsp;elems
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;[]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rest-elems&nbsp;elems]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                 026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(zero?&nbsp;x)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[result&nbsp;(vec&nbsp;rest-elems)]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(recur
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(dec&nbsp;x)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rest&nbsp;elems)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(conj&nbsp;result&nbsp;(first&nbsp;elems))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rest&nbsp;rest-elems)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 033&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 034&nbsp;&nbsp;(defn&nbsp;make-matrix
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 035&nbsp;&nbsp;&nbsp;&nbsp;"Takes&nbsp;as&nbsp;a&nbsp;parameters&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;x,&nbsp;the&nbsp;number&nbsp;of&nbsp;columns&nbsp;y
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 036&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;all&nbsp;elements&nbsp;of&nbsp;matrix&nbsp;in&nbsp;an&nbsp;array.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 037&nbsp;&nbsp;&nbsp;&nbsp;Composes&nbsp;a&nbsp;presentation&nbsp;of&nbsp;matrix&nbsp;as&nbsp;an&nbsp;array&nbsp;with&nbsp;x&nbsp;elements&nbsp;which
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 038&nbsp;&nbsp;&nbsp;&nbsp;presents&nbsp;the&nbsp;rows.&nbsp;Each&nbsp;row&nbsp;contains&nbsp;y&nbsp;elements."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 039&nbsp;&nbsp;&nbsp;&nbsp;[rows&nbsp;columns&nbsp;elems]
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 040&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(not=&nbsp;(*&nbsp;rows&nbsp;columns)(count&nbsp;elems))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(str&nbsp;"You&nbsp;should&nbsp;give:&nbsp;amount&nbsp;of&nbsp;rows,&nbsp;amount&nbsp;of&nbsp;columns&nbsp;and&nbsp;array&nbsp;of&nbsp;"
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 043&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;rows&nbsp;columns)&nbsp;"&nbsp;elements.")))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(loop&nbsp;[i&nbsp;rows
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 045&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elems&nbsp;elems
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 046&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix&nbsp;[]]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(zero?&nbsp;i)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[row-tookd&nbsp;(take-until&nbsp;columns&nbsp;elems)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row&nbsp;(first&nbsp;row-tookd)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rest-elems&nbsp;(second&nbsp;row-tookd)]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(recur&nbsp;(dec&nbsp;i)&nbsp;rest-elems&nbsp;(conj&nbsp;matrix&nbsp;row)))))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 053&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 054&nbsp;&nbsp;(defn&nbsp;is-matrix?
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 055&nbsp;&nbsp;&nbsp;&nbsp;"Tests&nbsp;if&nbsp;the&nbsp;given&nbsp;matrix&nbsp;is&nbsp;an&nbsp;array&nbsp;including&nbsp;array(s)."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 056&nbsp;&nbsp;&nbsp;&nbsp;[matrix]
+                </span><br/>
+<span class="covered" title="12 out of 12 forms covered">
+                 057&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(vector?&nbsp;matrix)&nbsp;(vector?&nbsp;(first&nbsp;matrix))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 058&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 059&nbsp;&nbsp;(defn&nbsp;take-column
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 060&nbsp;&nbsp;&nbsp;&nbsp;"Returns&nbsp;elements&nbsp;in&nbsp;the&nbsp;column&nbsp;of&nbsp;given&nbsp;index"
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 061&nbsp;&nbsp;&nbsp;&nbsp;[index&nbsp;matrix]
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 062&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(map&nbsp;(fn&nbsp;[x]&nbsp;(get&nbsp;x&nbsp;index))&nbsp;matrix)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 063&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 064&nbsp;&nbsp;(defn&nbsp;get-elem
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 065&nbsp;&nbsp;&nbsp;&nbsp;"Returns&nbsp;elem&nbsp;in&nbsp;the&nbsp;spot&nbsp;matrix[y][x]."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 066&nbsp;&nbsp;&nbsp;&nbsp;[matrix&nbsp;y&nbsp;x]
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                 067&nbsp;&nbsp;&nbsp;&nbsp;(get&nbsp;(get&nbsp;matrix&nbsp;y)&nbsp;x))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 068&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 069&nbsp;&nbsp;(defn&nbsp;set-elem
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 070&nbsp;&nbsp;&nbsp;&nbsp;"Changes&nbsp;the&nbsp;value&nbsp;of&nbsp;index&nbsp;[y][x]."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 071&nbsp;&nbsp;&nbsp;&nbsp;[matrix&nbsp;x&nbsp;y&nbsp;new-value]
+                </span><br/>
+<span class="covered" title="12 out of 12 forms covered">
+                 072&nbsp;&nbsp;&nbsp;&nbsp;(assoc&nbsp;matrix&nbsp;y&nbsp;(assoc&nbsp;(get&nbsp;matrix&nbsp;y)&nbsp;x&nbsp;new-value)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 073&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 074&nbsp;&nbsp;(defn&nbsp;make-empty-matrix
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 075&nbsp;&nbsp;&nbsp;&nbsp;"Returns&nbsp;y&nbsp;*&nbsp;x&nbsp;matrix&nbsp;with&nbsp;where&nbsp;is&nbsp;0&nbsp;in&nbsp;every&nbsp;index."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 076&nbsp;&nbsp;&nbsp;&nbsp;[y&nbsp;x]
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 077&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[row&nbsp;(fn&nbsp;[x]&nbsp;(vec&nbsp;(repeat&nbsp;(first&nbsp;x)&nbsp;0)))]
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 078&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(map&nbsp;row&nbsp;&nbsp;(repeat&nbsp;y&nbsp;[x])))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 079&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 080&nbsp;&nbsp;(defn&nbsp;exp&nbsp;[x&nbsp;n]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 081&nbsp;&nbsp;&nbsp;&nbsp;"Rises&nbsp;number&nbsp;x&nbsp;to&nbsp;it's&nbsp;n'th&nbsp;exponent&nbsp;x^n.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 082&nbsp;&nbsp;&nbsp;&nbsp;http://en.wikipedia.org/wiki/Exponentiation"
+                </span><br/>
+<span class="partial" title="3 out of 5 forms covered">
+                 083&nbsp;&nbsp;&nbsp;&nbsp;(loop&nbsp;[acc&nbsp;1&nbsp;n&nbsp;n]
+                </span><br/>
+<span class="partial" title="5 out of 10 forms covered">
+                 084&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(zero?&nbsp;n)&nbsp;acc
+                </span><br/>
+<span class="partial" title="1 out of 2 forms covered">
+                 085&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(recur&nbsp;(*&nbsp;x&nbsp;acc)&nbsp;(dec&nbsp;n)))))
+                </span><br/>
+ </body>
+</html>

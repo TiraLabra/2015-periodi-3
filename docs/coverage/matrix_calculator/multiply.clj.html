@@ -1,0 +1,463 @@
+<html>
+ <head>
+  <link rel="stylesheet" href="../coverage.css"/>  <title> matrix_calculator/multiply.clj </title>
+ </head>
+ <body>
+<span class="partial" title="35 out of 36 forms covered">
+                 001&nbsp;&nbsp;(ns&nbsp;matrix_calculator.multiply
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 002&nbsp;&nbsp;&nbsp;&nbsp;(:use&nbsp;matrix_calculator.helpers)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 003&nbsp;&nbsp;&nbsp;&nbsp;(:use&nbsp;matrix_calculator.basic_features))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 004&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 005&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 006&nbsp;&nbsp;(defn&nbsp;row-iteration
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 007&nbsp;&nbsp;&nbsp;&nbsp;"Generates&nbsp;every&nbsp;ordered&nbsp;pair&nbsp;of&nbsp;the&nbsp;rows&nbsp;of&nbsp;matrixA&nbsp;and&nbsp;matrixB.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 008&nbsp;&nbsp;&nbsp;&nbsp;(a,b)&nbsp;is&nbsp;subset&nbsp;of&nbsp;matrixA&nbsp;*&nbsp;matrixB,&nbsp;where&nbsp;a&nbsp;is&nbsp;a&nbsp;row&nbsp;of&nbsp;matrixA&nbsp;and&nbsp;b&nbsp;is&nbsp;a&nbsp;row&nbsp;of&nbsp;matrixB.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 009&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;each&nbsp;pair,&nbsp;this&nbsp;function&nbsp;calls&nbsp;the&nbsp;given&nbsp;function&nbsp;with&nbsp;a&nbsp;and&nbsp;b&nbsp;as&nbsp;parameters."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 010&nbsp;&nbsp;&nbsp;&nbsp;[function&nbsp;matrixA&nbsp;matrixB]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 011&nbsp;&nbsp;&nbsp;&nbsp;(map&nbsp;(fn&nbsp;[a]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                 012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(map&nbsp;(fn&nbsp;[b]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(function&nbsp;a&nbsp;b))&nbsp;matrixB))&nbsp;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrixA))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 015&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 016&nbsp;&nbsp;(defn&nbsp;matrix-multiplication
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 017&nbsp;&nbsp;&nbsp;&nbsp;"This&nbsp;function&nbsp;takes&nbsp;two&nbsp;matrix&nbsp;as&nbsp;parameters&nbsp;and&nbsp;multiplies&nbsp;them&nbsp;as&nbsp;matrices&nbsp;are&nbsp;multiplied&nbsp;in
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 018&nbsp;&nbsp;&nbsp;&nbsp;linear&nbsp;algebra.&nbsp;The&nbsp;first&nbsp;matrix&nbsp;must&nbsp;have&nbsp;as&nbsp;many&nbsp;columns&nbsp;as&nbsp;the&nbsp;second&nbsp;has&nbsp;rows.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 019&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;exemple
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 020&nbsp;&nbsp;&nbsp;&nbsp;[1&nbsp;2]&nbsp;and&nbsp;[1&nbsp;3&nbsp;5]&nbsp;can&nbsp;be&nbsp;multiplied&nbsp;in&nbsp;both&nbsp;ways.&nbsp;Square&nbsp;matrices&nbsp;are&nbsp;also&nbsp;valids.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 021&nbsp;&nbsp;&nbsp;&nbsp;[3&nbsp;4]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2&nbsp;4&nbsp;6]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 022&nbsp;&nbsp;&nbsp;&nbsp;[5&nbsp;6]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 023&nbsp;&nbsp;&nbsp;&nbsp;More&nbsp;about&nbsp;matrix&nbsp;multiplication:
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 024&nbsp;&nbsp;&nbsp;&nbsp;http://en.wikipedia.org/wiki/Matrix_multiplication.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 025&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 026&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;decimal&nbsp;numbers&nbsp;are&nbsp;rounded&nbsp;to&nbsp;three&nbsp;decimals."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 027&nbsp;&nbsp;&nbsp;&nbsp;[matrixA&nbsp;matrixB]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 028&nbsp;&nbsp;&nbsp;&nbsp;(cond
+                </span><br/>
+<span class="covered" title="12 out of 12 forms covered">
+                 029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not&nbsp;(and&nbsp;(is-matrix?&nbsp;matrixA)&nbsp;(is-matrix?&nbsp;matrixB)))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(invalid-matrix-notification)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(or
+                </span><br/>
+<span class="covered" title="12 out of 12 forms covered">
+                 032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not&nbsp;(=&nbsp;(count&nbsp;(first&nbsp;matrixA))(count&nbsp;matrixB)))
+                </span><br/>
+<span class="covered" title="11 out of 11 forms covered">
+                 033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not&nbsp;(=&nbsp;(count&nbsp;(first&nbsp;matrixB))(count&nbsp;matrixA))))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(matrices-are-not-valid-type)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:else
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                 036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(row-iteration&nbsp;(fn&nbsp;[x&nbsp;y]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                 037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(integer?&nbsp;(first&nbsp;x))
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                 038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce&nbsp;+&nbsp;(map&nbsp;*&nbsp;x&nbsp;y))
+                </span><br/>
+<span class="covered" title="14 out of 14 forms covered">
+                 039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(round&nbsp;3&nbsp;(reduce&nbsp;+&nbsp;(map&nbsp;*&nbsp;x&nbsp;y)))))&nbsp;matrixA&nbsp;(transpose&nbsp;matrixB)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 040&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 041&nbsp;&nbsp;(defn&nbsp;sub-matrix
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 042&nbsp;&nbsp;&nbsp;&nbsp;"Returns&nbsp;a&nbsp;submatrix&nbsp;of&nbsp;given&nbsp;matrix&nbsp;that&nbsp;starts&nbsp;from&nbsp;the&nbsp;index
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 043&nbsp;&nbsp;&nbsp;&nbsp;specified&nbsp;by&nbsp;the&nbsp;parameters&nbsp;fromX&nbsp;and&nbsp;fromY&nbsp;and&nbsp;continues&nbsp;to
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 044&nbsp;&nbsp;&nbsp;&nbsp;right&nbsp;(x&nbsp;grows)&nbsp;and&nbsp;down&nbsp;(y&nbsp;grows)&nbsp;'how-long'&nbsp;steps."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 045&nbsp;&nbsp;&nbsp;&nbsp;[matrix&nbsp;fromX&nbsp;fromY&nbsp;how-long]
+                </span><br/>
+<span class="covered" title="15 out of 15 forms covered">
+                 046&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(or&nbsp;(<&nbsp;(count&nbsp;matrix)&nbsp;(+&nbsp;fromY&nbsp;how-long))
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<&nbsp;(count&nbsp;(first&nbsp;matrix))&nbsp;(+&nbsp;fromX&nbsp;how-long)))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(index-out-of-bound)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(&nbsp;map&nbsp;(fn&nbsp;[row]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                 050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(take&nbsp;how-long&nbsp;(drop&nbsp;fromX&nbsp;row))))
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                 051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(take&nbsp;how-long&nbsp;(drop&nbsp;fromY&nbsp;matrix))))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 052&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 053&nbsp;&nbsp;(defn&nbsp;concat-matrices
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 054&nbsp;&nbsp;&nbsp;&nbsp;"Concat&nbsp;the&nbsp;four&nbsp;given&nbsp;matrices&nbsp;into&nbsp;one&nbsp;(four&nbsp;time)bigger&nbsp;square&nbsp;matrix.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 055&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 056&nbsp;&nbsp;&nbsp;&nbsp;m11,&nbsp;m21,&nbsp;m12,&nbsp;m22&nbsp;will&nbsp;be&nbsp;merged&nbsp;to&nbsp;[[m11&nbsp;m12]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[m21&nbsp;m22]].
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 058&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;matrices&nbsp;should&nbsp;be&nbsp;same&nbsp;type."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 059&nbsp;&nbsp;&nbsp;&nbsp;[m11&nbsp;m21&nbsp;m12&nbsp;m22]
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                 060&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[test-x&nbsp;(fn&nbsp;[x]&nbsp;(count&nbsp;(first&nbsp;x)))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test-y&nbsp;(fn&nbsp;[y]&nbsp;(count&nbsp;y))]
+                </span><br/>
+<span class="covered" title="22 out of 22 forms covered">
+                 062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(not&nbsp;(and&nbsp;(=&nbsp;(test-x&nbsp;m11)(test-x&nbsp;m21)(test-x&nbsp;m12)(test-x&nbsp;m22))
+                </span><br/>
+<span class="covered" title="13 out of 13 forms covered">
+                 063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(=&nbsp;(test-y&nbsp;m11)(test-y&nbsp;m21)(test-y&nbsp;m12)(test-y&nbsp;m22))))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(matrices-are-not-valid-type)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 065&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                 066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[concat-two&nbsp;(fn&nbsp;[upper&nbsp;lower]&nbsp;(vec&nbsp;(concat&nbsp;upper&nbsp;lower)))]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 067&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(map&nbsp;(fn&nbsp;[left&nbsp;right]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                 068&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(concat&nbsp;left&nbsp;right)))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 069&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(concat-two&nbsp;m11&nbsp;m21)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 070&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(concat-two&nbsp;m12&nbsp;m22)))))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 071&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 072&nbsp;&nbsp;(defn&nbsp;is-power-of-two?&nbsp;[x]
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                 073&nbsp;&nbsp;&nbsp;&nbsp;(cond
+                </span><br/>
+<span class="not-covered" title="0 out of 12 forms covered">
+                 074&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(or&nbsp;(=&nbsp;x&nbsp;2.0)(=&nbsp;x&nbsp;2))&nbsp;true
+                </span><br/>
+<span class="not-covered" title="0 out of 20 forms covered">
+                 075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not&nbsp;(or&nbsp;(=&nbsp;(mod&nbsp;x&nbsp;2)&nbsp;0)&nbsp;(=&nbsp;(mod&nbsp;x&nbsp;2)&nbsp;0.0)))&nbsp;false
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 076&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:else
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                 077&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(recur&nbsp;(float&nbsp;(/&nbsp;x&nbsp;2)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 078&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 079&nbsp;&nbsp;(defn&nbsp;expand-matrix-by-one
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 080&nbsp;&nbsp;&nbsp;&nbsp;[matrix]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 081&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[add-zero&nbsp;(fn&nbsp;[x]&nbsp;(conj&nbsp;x&nbsp;0))]
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 082&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(conj
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 083&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(map&nbsp;add-zero&nbsp;matrix))
+                </span><br/>
+<span class="not-covered" title="0 out of 10 forms covered">
+                 084&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vec&nbsp;(repeat&nbsp;(inc&nbsp;(count&nbsp;matrix))0))))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 085&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 086&nbsp;&nbsp;(defn&nbsp;find-next-power-of-two
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 087&nbsp;&nbsp;&nbsp;&nbsp;[matrix]
+                </span><br/>
+<span class="not-covered" title="0 out of 7 forms covered">
+                 088&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(is-power-of-two?&nbsp;(count&nbsp;matrix))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 089&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                 090&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(recur&nbsp;(expand-matrix-by-one&nbsp;matrix))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 091&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 092&nbsp;&nbsp;(defn&nbsp;strassen-recur
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 093&nbsp;&nbsp;&nbsp;&nbsp;[matrixA&nbsp;matrixB]
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 094&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[n&nbsp;(count&nbsp;matrixA)]
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                 095&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(<=&nbsp;n&nbsp;2)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 096&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(matrix-multiplication&nbsp;matrixA&nbsp;matrixB)
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                 097&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[new-size&nbsp;(/&nbsp;n&nbsp;2)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a11&nbsp;(sub-matrix&nbsp;matrixA&nbsp;0&nbsp;0&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 099&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a12&nbsp;(sub-matrix&nbsp;matrixA&nbsp;new-size&nbsp;0&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a21&nbsp;(sub-matrix&nbsp;matrixA&nbsp;0&nbsp;new-size&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 101&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a22&nbsp;(sub-matrix&nbsp;matrixA&nbsp;new-size&nbsp;new-size&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b11&nbsp;(sub-matrix&nbsp;matrixB&nbsp;0&nbsp;0&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b12&nbsp;(sub-matrix&nbsp;matrixB&nbsp;new-size&nbsp;0&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b21&nbsp;(sub-matrix&nbsp;matrixB&nbsp;0&nbsp;new-size&nbsp;new-size)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 105&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b22&nbsp;(sub-matrix&nbsp;matrixB&nbsp;new-size&nbsp;new-size&nbsp;new-size)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 106&nbsp;&nbsp;
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 107&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(add-two-matrices&nbsp;a11&nbsp;a22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 108&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(add-two-matrices&nbsp;b11&nbsp;b22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 109&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1&nbsp;(strassen-recur&nbsp;a-result&nbsp;b-result)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(add-two-matrices&nbsp;a21&nbsp;a22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 111&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p2&nbsp;(strassen-recur&nbsp;a-result&nbsp;b11)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 112&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(subtract-two-matrices&nbsp;b12&nbsp;b22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p3&nbsp;(strassen-recur&nbsp;a11&nbsp;b-result)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(subtract-two-matrices&nbsp;b21&nbsp;b11)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p4&nbsp;(strassen-recur&nbsp;a22&nbsp;b-result)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 116&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(add-two-matrices&nbsp;a11&nbsp;a12)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 117&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p5&nbsp;(strassen-recur&nbsp;a-result&nbsp;b22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 118&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(subtract-two-matrices&nbsp;a21&nbsp;a11)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 119&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(add-two-matrices&nbsp;b11&nbsp;b12)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 120&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p6&nbsp;(strassen-recur&nbsp;a-result&nbsp;b-result)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(subtract-two-matrices&nbsp;a12&nbsp;a22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 122&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(add-two-matrices&nbsp;b21&nbsp;b22)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p7&nbsp;(strassen-recur&nbsp;a-result&nbsp;b-result)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 124&nbsp;&nbsp;
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 125&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c12&nbsp;(add-two-matrices&nbsp;p3&nbsp;p5)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 126&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c21&nbsp;(add-two-matrices&nbsp;p2&nbsp;p4)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(add-two-matrices&nbsp;p1&nbsp;p4)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(add-two-matrices&nbsp;a-result&nbsp;p7)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c11&nbsp;(subtract-two-matrices&nbsp;b-result&nbsp;p5)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a-result&nbsp;(add-two-matrices&nbsp;p1&nbsp;p3)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 131&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b-result&nbsp;(add-two-matrices&nbsp;a-result&nbsp;p6)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 132&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c22&nbsp;(subtract-two-matrices&nbsp;b-result&nbsp;p2)]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 133&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(concat-matrices&nbsp;c11&nbsp;c21&nbsp;c12&nbsp;c22)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 134&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 135&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 136&nbsp;&nbsp;(defn&nbsp;strassen
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 137&nbsp;&nbsp;&nbsp;&nbsp;"Multiplies&nbsp;matrices&nbsp;like&nbsp;function&nbsp;matrix-multiplication,&nbsp;but&nbsp;run&nbsp;faster.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 138&nbsp;&nbsp;&nbsp;&nbsp;Matrix-multiplication&nbsp;needs&nbsp;O(n^3)&nbsp;operations&nbsp;but&nbsp;strassen&nbsp;do&nbsp;it&nbsp;with
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 139&nbsp;&nbsp;&nbsp;&nbsp;O(n^2.81).&nbsp;The&nbsp;performance&nbsp;increase&nbsp;is&nbsp;acchieved&nbsp;by&nbsp;splitting&nbsp;matrices&nbsp;to&nbsp;four&nbsp;pieces&nbsp;and
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 140&nbsp;&nbsp;&nbsp;&nbsp;calculating&nbsp;in&nbsp;O(1)&nbsp;time&nbsp;new&nbsp;matrices&nbsp;(http://en.wikipedia.org/wiki/Strassen_algorithm).
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 141&nbsp;&nbsp;&nbsp;&nbsp;Algorithm&nbsp;calls&nbsp;itself&nbsp;recursively&nbsp;with&nbsp;new&nbsp;matrices&nbsp;until&nbsp;sizes&nbsp;of&nbsp;matrices&nbsp;are&nbsp;two&nbsp;or&nbsp;lower.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 142&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 143&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;implementation&nbsp;of&nbsp;algorithm&nbsp;works&nbsp;only&nbsp;for&nbsp;square&nbsp;matrices,&nbsp;which&nbsp;have&nbsp;the&nbsp;size&nbsp;of&nbsp;power&nbsp;of&nbsp;two(2,4,6,16...).
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 144&nbsp;&nbsp;&nbsp;&nbsp;Therefore&nbsp;square&nbsp;matrices&nbsp;of&nbsp;different&nbsp;size&nbsp;are&nbsp;expanded&nbsp;to&nbsp;next&nbsp;power&nbsp;of&nbsp;two&nbsp;and&nbsp;after&nbsp;multiplication&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 145&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;returns&nbsp;submatrix&nbsp;that&nbsp;corresponds&nbsp;the&nbsp;size&nbsp;of&nbsp;original&nbsp;matrices."
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 146&nbsp;&nbsp;&nbsp;&nbsp;[matrixA&nbsp;matrixB]
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 147&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[original-size&nbsp;(count&nbsp;matrixA)
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 148&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expanded-matrix-a&nbsp;(find-next-power-of-two&nbsp;matrixA)
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 149&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expanded-matrix-b&nbsp;(find-next-power-of-two&nbsp;matrixB)]
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                 150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(sub-matrix
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 151&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(strassen-recur&nbsp;expanded-matrix-a&nbsp;expanded-matrix-b)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 152&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;0&nbsp;original-size)))
+                </span><br/>
+ </body>
+</html>

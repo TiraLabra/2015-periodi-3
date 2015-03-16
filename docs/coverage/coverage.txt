@@ -1,0 +1,5 @@
+Lines Non-Blank Instrumented Covered Partial
+   85        75      41         37          4 matrix_calculator/helpers.clj
+   49        43      23         22          1 matrix_calculator/basic_features.clj
+  152       135      93         39          1 matrix_calculator/multiply.clj
+    5         4       3          1          1 matrix_calculator/paaluokka.clj
